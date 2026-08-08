@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimalan — IGCSE LT1 Prep (17–24 Aug 2026)</title>
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#ffffff; --ink:#1e2a3a; --muted:#64748b;
+    --accent:#2563eb; --accent-soft:#dbeafe; --green:#16a34a; --green-soft:#dcfce7;
+    --red:#dc2626; --red-soft:#fee2e2; --amber:#d97706; --amber-soft:#fef3c7;
+    --border:#e2e8f0; --radius:12px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--ink); line-height:1.55;}
+  .wrap{max-width:880px; margin:0 auto; padding:16px;}
+  header.top{background:linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:20px 16px; border-radius:0 0 18px 18px;}
+  header.top h1{font-size:1.35rem;}
+  header.top p{opacity:.85; font-size:.85rem; margin-top:4px;}
+  .tabs{display:flex; gap:6px; overflow-x:auto; padding:14px 0 4px; -webkit-overflow-scrolling:touch;}
+  .tab{flex:0 0 auto; padding:8px 14px; border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--ink); font-size:.85rem; font-weight:600; cursor:pointer; white-space:nowrap;}
+  .tab.active{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin-top:14px;}
+  .card h2{font-size:1.05rem; margin-bottom:4px;}
+  .sub{color:var(--muted); font-size:.83rem;}
+  .pill{display:inline-block; padding:2px 10px; border-radius:999px; font-size:.72rem; font-weight:700; letter-spacing:.02em;}
+  .pill.blue{background:var(--accent-soft); color:#1d4ed8;}
+  .pill.green{background:var(--green-soft); color:#15803d;}
+  .pill.red{background:var(--red-soft); color:#b91c1c;}
+  .pill.amber{background:var(--amber-soft); color:#b45309;}
+  .btn{display:inline-block; padding:10px 18px; border-radius:10px; border:none; background:var(--accent); color:#fff; font-weight:700; font-size:.9rem; cursor:pointer;}
+  .btn.ghost{background:var(--card); color:var(--accent); border:1.5px solid var(--accent);}
+  .btn.small{padding:6px 12px; font-size:.8rem;}
+  .btn.green{background:var(--green);}
+  .btn:disabled{opacity:.5; cursor:not-allowed;}
+  .chapter-row{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid var(--border); flex-wrap:wrap;}
+  .chapter-row:last-child{border-bottom:none;}
+  .qcard{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin-top:12px;}
+  .qhead{display:flex; justify-content:space-between; gap:8px; margin-bottom:8px; align-items:baseline;}
+  .qnum{font-weight:800; color:var(--accent);}
+  .qmarks{color:var(--muted); font-size:.8rem; white-space:nowrap;}
+  .qtext{white-space:pre-wrap; margin-bottom:10px;}
+  .opt{display:flex; gap:10px; align-items:flex-start; padding:9px 12px; border:1.5px solid var(--border); border-radius:10px; margin-top:8px; cursor:pointer;}
+  .opt input{margin-top:4px;}
+  .opt.sel{border-color:var(--accent); background:var(--accent-soft);}
+  input[type=text], textarea{width:100%; padding:10px; border:1.5px solid var(--border); border-radius:10px; font:inherit; background:#fbfcfe;}
+  textarea{min-height:96px; resize:vertical;}
+  .passage{background:#f8fafc; border-left:4px solid var(--accent); padding:12px 14px; border-radius:0 10px 10px 0; margin:10px 0; font-size:.92rem; white-space:pre-wrap;}
+  .sticky-bar{position:sticky; bottom:0; background:rgba(244,246,251,.95); backdrop-filter:blur(4px); padding:12px 0; display:flex; gap:10px; align-items:center; justify-content:space-between; border-top:1px solid var(--border); margin-top:16px;}
+  .timer{font-weight:800; font-variant-numeric:tabular-nums;}
+  .timer.low{color:var(--red);}
+  /* results */
+  .score-hero{text-align:center; padding:20px;}
+  .score-hero .big{font-size:2.4rem; font-weight:800;}
+  .bar{height:10px; background:var(--border); border-radius:999px; overflow:hidden; margin:10px auto; max-width:420px;}
+  .bar>div{height:100%; background:var(--green); border-radius:999px; transition:width .4s;}
+  .r-your{padding:10px 12px; border-radius:10px; margin-top:8px; font-size:.92rem; white-space:pre-wrap;}
+  .r-your.ok{background:var(--green-soft);}
+  .r-your.bad{background:var(--red-soft);}
+  .r-your.self{background:#f1f5f9;}
+  .r-key{background:var(--amber-soft); padding:10px 12px; border-radius:10px; margin-top:8px; font-size:.92rem; white-space:pre-wrap;}
+  .r-key b{display:block; margin-bottom:4px;}
+  .mspoints{margin-top:6px;}
+  .mspoint{display:flex; gap:8px; align-items:flex-start; font-size:.88rem; margin-top:4px;}
+  .mspoint .dot{flex:0 0 auto; margin-top:2px;}
+  .award{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; align-items:center;}
+  .award button{width:38px; height:34px; border-radius:8px; border:1.5px solid var(--border); background:var(--card); font-weight:700; cursor:pointer;}
+  .award button.sel{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .hist-row{display:flex; justify-content:space-between; gap:8px; padding:8px 0; border-bottom:1px solid var(--border); font-size:.87rem; flex-wrap:wrap;}
+  .muted{color:var(--muted);}
+  .notice{background:var(--amber-soft); border-radius:10px; padding:10px 14px; margin-top:12px; font-size:.88rem;}
+  @media print{ .tabs,.sticky-bar,.btn,header.top p{display:none;} body{background:#fff;} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>📚 Nimalan — LT1 Prep</h1>
+    <p>Grade 9 IGCSE · Vaels International School · Long Test 1: 17–24 Aug 2026</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="view"></div>
+</div>
+
+<script>
+/* ================= ENGINE ================= */
+window.BANK = {};
+var SUBJECT_ORDER = ["math","gp","evm","accounts","business","economics","cs","english"];
+var state = null; // active test
+var $ = function(id){ return document.getElementById(id); };
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function store(key, val){ try{ if(val===undefined) return JSON.parse(localStorage.getItem(key)||"null"); localStorage.setItem(key, JSON.stringify(val)); }catch(e){ return null; } }
+
+var activeSubj = null;
+function renderTabs(){
+  var t = $("tabs"); t.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(k){
+    if(!BANK[k]) return;
+    var b = document.createElement("button");
+    b.className = "tab" + (k===activeSubj ? " active":"");
+    b.textContent = BANK[k].name;
+    b.onclick = function(){ if(state && !confirmLeave()) return; state=null; stopTimer(); activeSubj=k; renderTabs(); renderHome(k); };
+    t.appendChild(b);
+  });
+}
+function confirmLeave(){ return confirm("A test is in progress. Leave without submitting?"); }
+
+function renderHome(k){
+  var s = BANK[k];
+  var h = '<div class="card"><h2>'+esc(s.name)+'</h2><div class="sub">'+esc(s.exam)+'</div></div>';
+  h += '<div class="card"><h2>📖 Chapter-wise practice</h2>';
+  Object.keys(s.chapters).forEach(function(ch){
+    var n = s.chapters[ch].length, m = totalMarks(s.chapters[ch]);
+    h += '<div class="chapter-row"><div><b>'+esc(ch)+'</b><div class="sub">'+n+' questions · '+m+' marks</div></div>'+
+         '<button class="btn small" onclick="startTest(\''+k+'\',\''+encodeURIComponent(ch)+'\',false)">Start practice</button></div>';
+  });
+  h += '</div>';
+  if(s.mock && s.mock.length){
+    h += '<div class="card"><h2>📝 Mock test</h2><div class="sub">'+s.mock.length+' questions · '+totalMarks(s.mock)+' marks · '+s.mockTime+' minutes (timed, like the real paper)</div>'+
+         '<div style="margin-top:10px"><button class="btn" onclick="startTest(\''+k+'\',null,true)">Start mock test</button></div></div>';
+  }
+  var hist = (store("lt1_history")||[]).filter(function(r){ return r.subj===k; });
+  if(hist.length){
+    h += '<div class="card"><h2>🕑 Previous attempts</h2>';
+    hist.slice().reverse().forEach(function(r){
+      var pct = Math.round(100*r.score/r.max);
+      h += '<div class="hist-row"><span>'+esc(r.test)+' <span class="muted">· '+esc(r.name)+' · '+esc(r.date)+'</span></span><b>'+r.score+'/'+r.max+' ('+pct+'%)</b></div>';
+    });
+    h += '</div>';
+  }
+  $("view").innerHTML = h;
+  window.scrollTo(0,0);
+}
+
+function totalMarks(qs){ return qs.reduce(function(a,q){ return a+(q.marks||1); },0); }
+
+function startTest(k, chEnc, isMock){
+  var s = BANK[k];
+  var qs, title, time=null;
+  if(isMock){ qs = s.mock; title = s.name+" — Mock Test"; time = s.mockTime*60; }
+  else { var ch = decodeURIComponent(chEnc); qs = s.chapters[ch]; title = s.name+" — "+ch; }
+  state = { subj:k, qs:qs, title:title, time:time, submitted:false, awards:{} };
+  renderTest();
+  if(time) startTimer(time);
+}
+
+var timerInt = null;
+function startTimer(secs){
+  var end = Date.now() + secs*1000;
+  timerInt = setInterval(function(){
+    var left = Math.max(0, Math.round((end-Date.now())/1000));
+    var el = $("timer");
+    if(!el){ stopTimer(); return; }
+    var m = Math.floor(left/60), sec = left%60;
+    el.textContent = "⏱ " + m + ":" + (sec<10?"0":"") + sec;
+    if(left<=300) el.classList.add("low");
+    if(left<=0){ stopTimer(); el.textContent = "⏱ Time up!"; }
+  }, 500);
+}
+function stopTimer(){ if(timerInt){ clearInterval(timerInt); timerInt=null; } }
+
+function renderTest(){
+  var h = '<div class="card"><h2>'+esc(state.title)+'</h2><div class="sub">'+state.qs.length+' questions · '+totalMarks(state.qs)+' marks · Answer every question, then press Submit.</div>'+
+          '<div style="margin-top:10px"><label class="sub" for="stuName">Name: </label><input type="text" id="stuName" style="max-width:220px" value="'+esc(store("lt1_name")||"Nimalan")+'"></div></div>';
+  state.qs.forEach(function(q,i){
+    h += '<div class="qcard" id="qc'+i+'">';
+    h += '<div class="qhead"><span class="qnum">Q'+(i+1)+'</span><span class="qmarks">['+ (q.marks||1) +' mark'+((q.marks||1)>1?'s':'')+'] · '+badgeType(q)+'</span></div>';
+    if(q.passage) h += '<div class="passage">'+esc(q.passage)+'</div>';
+    h += '<div class="qtext">'+esc(q.q)+'</div>';
+    if(q.type==="mcq"){
+      q.opts.forEach(function(o,j){
+        h += '<label class="opt" id="opt'+i+'_'+j+'"><input type="radio" name="q'+i+'" value="'+j+'" onchange="selOpt('+i+','+j+')"><span>'+esc(o)+'</span></label>';
+      });
+    } else if(q.type==="short" || q.type==="num"){
+      h += '<input type="text" id="in'+i+'" placeholder="Type your answer" autocomplete="off">';
+    } else {
+      h += '<textarea id="in'+i+'" placeholder="Write your answer here — use full sentences and key terms"></textarea>';
+    }
+    h += '</div>';
+  });
+  h += '<div class="sticky-bar"><span class="timer" id="timer">'+(state.time?'⏱ …':'Practice mode — no timer')+'</span>'+
+       '<button class="btn green" onclick="submitTest()">Submit &amp; mark ✔</button></div>';
+  $("view").innerHTML = h;
+  window.scrollTo(0,0);
+}
+function badgeType(q){
+  if(q.type==="mcq") return "MCQ — auto-marked";
+  if(q.type==="num"||q.type==="short") return "Answer — auto-marked";
+  return "Written — marked vs mark scheme";
+}
+function selOpt(i,j){
+  var q = state.qs[i];
+  q.opts.forEach(function(_,x){ var el=$("opt"+i+"_"+x); if(el) el.classList.toggle("sel", x===j); });
+}
+
+function norm(s){
+  return String(s).toLowerCase().replace(/[,₹$]/g,"").replace(/\s+/g," ").trim()
+    .replace(/\s*([=+\-×x*\/^()])\s*/g,"$1");
+}
+function answersMatch(given, accepted){
+  var g = norm(given);
+  if(!g) return false;
+  for(var i=0;i<accepted.length;i++){
+    var a = norm(accepted[i]);
+    if(g===a) return true;
+    var gf = parseFloat(g.replace(/[^0-9.\-]/g,"")), af = parseFloat(a.replace(/[^0-9.\-]/g,""));
+    if(!isNaN(gf) && !isNaN(af) && g.replace(/[^0-9.\-]/g,"")!=="" && Math.abs(gf-af)<1e-9 &&
+       g.replace(/[0-9.\-]/g,"")===a.replace(/[0-9.\-]/g,"")) return true;
+  }
+  return false;
+}
+
+function submitTest(){
+  if(!state || state.submitted) return;
+  var unanswered = 0;
+  state.qs.forEach(function(q,i){
+    if(q.type==="mcq"){
+      var sel = document.querySelector('input[name=q'+i+']:checked');
+      q._given = sel ? parseInt(sel.value,10) : null;
+      if(q._given===null) unanswered++;
+    } else {
+      var el = $("in"+i);
+      q._given = el ? el.value.trim() : "";
+      if(!q._given) unanswered++;
+    }
+  });
+  if(unanswered>0 && !confirm(unanswered+" question(s) are unanswered. Submit anyway?")) return;
+  var nm = $("stuName") ? $("stuName").value.trim() || "Nimalan" : "Nimalan";
+  store("lt1_name", nm);
+  state.name = nm;
+  stopTimer();
+  // mark
+  state.qs.forEach(function(q,i){
+    var mk = q.marks||1;
+    if(q.type==="mcq"){
+      q._ok = (q._given===q.ans);
+      q._score = q._ok ? mk : 0; q._auto = true;
+    } else if(q.type==="short"||q.type==="num"){
+      q._ok = answersMatch(q._given, q.ans);
+      q._score = q._ok ? mk : 0; q._auto = true;
+    } else {
+      // structured: keyword-suggested mark, adjustable
+      var hits = 0, g = norm(q._given);
+      q.points.forEach(function(p){ p._hit = p.kw.some(function(kw){ return g.indexOf(norm(kw))>=0; }); if(p._hit) hits++; });
+      q._score = Math.min(mk, hits); q._auto = false;
+    }
+  });
+  state.submitted = true;
+  renderResults();
+}
+
+function curScore(){ return state.qs.reduce(function(a,q){ return a+(q._score||0); },0); }
+
+function renderResults(){
+  var max = totalMarks(state.qs);
+  var h = '<div class="card score-hero"><div class="sub">'+esc(state.title)+' · '+esc(state.name)+'</div>'+
+          '<div class="big" id="scoreBig"></div><div class="bar"><div id="scoreBar"></div></div>'+
+          '<div class="sub" id="scoreMsg"></div>'+
+          '<div class="notice">🔒 Correct answers and mark schemes are not shown here — the full answer key has been emailed to the parent. ✍️ Written answers are given a provisional mark from key-point matching; the emailed mark scheme lets a parent adjust the total.</div></div>';
+  state.qs.forEach(function(q,i){
+    var mk = q.marks||1;
+    h += '<div class="qcard">';
+    var pill = q._auto ? (q._ok?'<span class="pill green">✔ Correct</span>':'<span class="pill red">✘ Incorrect</span>')
+                       : '<span class="pill amber">✍ Provisional mark</span>';
+    h += '<div class="qhead"><span class="qnum">Q'+(i+1)+'</span><span>'+pill+' <span class="qmarks" id="qs'+i+'">'+q._score+'/'+mk+'</span></span></div>';
+    h += '<div class="qtext">'+esc(q.q)+'</div>';
+    var givenTxt = (q.type==="mcq") ? (q._given===null?"(not answered)":q.opts[q._given]) : (q._given||"(not answered)");
+    var cls = q._auto ? (q._ok?"ok":"bad") : "self";
+    h += '<div class="r-your '+cls+'"><b>'+esc(state.name)+"'s answer:</b> "+esc(givenTxt)+'</div>';
+    h += '</div>';
+  });
+  h += '<div class="card"><h2>📧 Report email</h2><div class="sub">The full report — score, every question, '+esc(state.name)+"'s answers, correct answers and mark schemes — is emailed to the parents on submit.</div>"+
+       '<div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; align-items:center">'+
+       '<input type="text" id="emailTo" readonly style="max-width:420px; background:#eef2f7; color:var(--muted)" value="'+REPORT_EMAILS.join(", ")+'">'+
+       '<button class="btn small" id="emailBtn" onclick="emailReport()">Resend report</button>'+
+       '<span class="sub" id="emailStatus"></span></div></div>';
+  h += '<div class="sticky-bar"><button class="btn ghost" onclick="saveAndHome()">💾 Save result &amp; back</button><span></span></div>';
+  $("view").innerHTML = h;
+  updateScoreHero();
+  window.scrollTo(0,0);
+  emailReport(); // auto-send full report (with answer key) on submit
+}
+function buildReport(){
+  var max = totalMarks(state.qs), sc = curScore(), pct = max?Math.round(100*sc/max):0;
+  var L = [];
+  L.push("TEST REPORT — " + state.title);
+  L.push("Student: " + state.name);
+  L.push("Date: " + new Date().toLocaleString("en-GB"));
+  L.push("SCORE: " + sc + " / " + max + "  (" + pct + "%)");
+  L.push("");
+  state.qs.forEach(function(q,i){
+    var mk = q.marks||1;
+    L.push("--------------------------------------------------");
+    L.push("Q" + (i+1) + " [" + q._score + "/" + mk + " marks]" + (q._auto ? (q._ok ? " — CORRECT" : " — INCORRECT") : " — PROVISIONAL (key-point match; review vs mark scheme below)"));
+    L.push("Question: " + q.q.replace(/\s+/g," "));
+    if(q.type==="mcq"){
+      L.push("Answer given: " + (q._given===null ? "(not answered)" : q.opts[q._given]));
+      L.push("Correct answer: " + q.opts[q.ans]);
+    } else if(q.type==="short"||q.type==="num"){
+      L.push("Answer given: " + (q._given || "(not answered)"));
+      L.push("Correct answer: " + q.ans[0]);
+    } else {
+      L.push("Answer given: " + (q._given || "(not answered)").replace(/\s+/g," "));
+      L.push("Mark scheme:");
+      q.points.forEach(function(p){ L.push("  " + (p._hit?"[hit] ":"[  -  ] ") + p.pt); });
+      if(q.model) L.push("Model answer: " + q.model.replace(/\s+/g," "));
+    }
+    if(q.why) L.push("Note: " + q.why);
+  });
+  return L.join("\n");
+}
+var REPORT_EMAILS = ["gowthaman.selvaraj@gmail.com","sumathithayumavan@gmail.com"];
+function emailReport(){
+  var st = $("emailStatus"), btn = $("emailBtn");
+  btn.disabled = true; st.textContent = "Sending…";
+  var max = totalMarks(state.qs);
+  var payload = {
+    _subject: "LT1 Prep result: " + state.title + " — " + state.name + " scored " + curScore() + "/" + max,
+    name: state.name,
+    message: buildReport()
+  };
+  var results = [];
+  Promise.all(REPORT_EMAILS.map(function(to){
+    return fetch("https://formsubmit.co/ajax/" + encodeURIComponent(to), {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify(payload)
+    }).then(function(r){ return r.json(); })
+      .then(function(d){ results.push({to:to, ok:!!(d && (d.success===true || d.success==="true")), msg:(d&&d.message)||""}); })
+      .catch(function(){ results.push({to:to, ok:false, msg:"no connection"}); });
+  })).then(function(){
+    btn.disabled = false;
+    var fails = results.filter(function(r){ return !r.ok; });
+    if(!fails.length) st.textContent = "✅ Sent to both parents. (First time only: each inbox gets a FormSubmit activation email — click Activate once.)";
+    else if(fails.length===results.length) st.textContent = "⚠️ Could not send (" + fails[0].msg + "). Check the internet connection and press Resend.";
+    else st.textContent = "⚠️ Sent to " + results.filter(function(r){return r.ok}).map(function(r){return r.to}).join(", ") + " but failed for " + fails.map(function(r){return r.to}).join(", ") + " — press Resend.";
+  });
+}
+function award(i,m){
+  var q = state.qs[i]; q._score = m;
+  var mk = q.marks||1;
+  for(var x=0;x<=mk;x++){ var b=$("aw"+i+"_"+x); if(b) b.classList.toggle("sel", x===m); }
+  $("qs"+i).textContent = m+"/"+mk;
+  updateScoreHero();
+}
+function updateScoreHero(){
+  var max = totalMarks(state.qs), sc = curScore(), pct = max? Math.round(100*sc/max):0;
+  $("scoreBig").textContent = sc+" / "+max;
+  $("scoreBar").style.width = pct+"%";
+  $("scoreBar").style.background = pct>=75?"var(--green)":pct>=50?"var(--amber)":"var(--red)";
+  $("scoreMsg").textContent = pct+"% — " + (pct>=85?"Excellent! Exam-ready. 🌟":pct>=70?"Good work — polish the missed points.":pct>=50?"Fair — revise the marked chapters again.":"Needs revision — go through the mark schemes carefully.");
+}
+function saveAndHome(){
+  var max = totalMarks(state.qs);
+  var hist = store("lt1_history")||[];
+  hist.push({ subj:state.subj, test:state.title.split(" — ").slice(1).join(" — ")||state.title, name:state.name,
+              date:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"})+" "+new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}),
+              score:curScore(), max:max });
+  if(hist.length>200) hist = hist.slice(-200);
+  store("lt1_history", hist);
+  var k = state.subj; state = null;
+  renderHome(k);
+}
+
+window.addEventListener("load", function(){
+  activeSubj = SUBJECT_ORDER.filter(function(k){ return BANK[k]; })[0];
+  renderTabs();
+  if(activeSubj) renderHome(activeSubj);
+});
+</script>
+
+<!-- ============ QUESTION BANKS (one script block per subject) ============ -->
+<script id="bank-math">BANK.math = {
+name:"Mathematics", exam:"IGCSE 0580 · LT1 (Mon 17 Aug FN): Ch 2 Algebra 1, Ch 6 Algebra 2 · 1 hour · 40 marks · board pattern",
+mockTime:60,
+chapters:{
+"Ch 2 — Algebra 1":[
+{type:"short",marks:1,q:"Simplify: 4a + 7b − a + 2b",ans:["3a+9b","9b+3a"],why:"Collect like terms: 4a − a = 3a; 7b + 2b = 9b."},
+{type:"short",marks:1,q:"Simplify: 5x × 3y",ans:["15xy","15yx"],why:"Multiply the numbers (5 × 3 = 15) and write letters together."},
+{type:"short",marks:2,q:"Expand: 3(2x − 5)",ans:["6x-15","6x−15","-15+6x"],why:"Multiply each term inside the bracket by 3: 3×2x = 6x, 3×(−5) = −15."},
+{type:"short",marks:2,q:"Expand and simplify: 4(x + 3) + 2(x − 1)",ans:["6x+10","10+6x"],why:"4x + 12 + 2x − 2 = 6x + 10."},
+{type:"short",marks:2,q:"Factorise completely: 12x + 18",ans:["6(2x+3)","6(3+2x)"],why:"HCF of 12 and 18 is 6. 12x + 18 = 6(2x + 3). 'Completely' means take out the highest common factor."},
+{type:"short",marks:2,q:"Factorise completely: 8x² − 12x",ans:["4x(2x-3)","4x(2x−3)"],why:"HCF of 8x² and 12x is 4x. Common mistake: writing 2x(4x − 6), which is not complete."},
+{type:"num",marks:2,q:"If a = 3 and b = −2, find the value of 2a² − 5b",ans:["28"],why:"2a² = 2 × 3² = 2 × 9 = 18 (square first, then multiply). −5b = −5 × (−2) = +10. Total 28."},
+{type:"num",marks:2,q:"Solve: 5x − 7 = 23",ans:["6","x=6"],why:"5x = 30, so x = 6."},
+{type:"num",marks:3,q:"Solve: 3(x + 4) = 2x + 19",ans:["7","x=7"],why:"3x + 12 = 2x + 19 → 3x − 2x = 19 − 12 → x = 7."},
+{type:"num",marks:3,q:"Solve: (2x + 1)/3 = 5",ans:["7","x=7"],why:"Multiply both sides by 3: 2x + 1 = 15 → 2x = 14 → x = 7."},
+{type:"structured",marks:3,q:"The length of a rectangle is (2x + 3) cm and its width is 4 cm. The perimeter is 38 cm. Form an equation and solve it to find x.",
+ points:[{pt:"Correct equation: 2(2x + 3) + 2(4) = 38 or 4x + 14 = 38 (1 mark)",kw:["4x+14=38","2(2x+3)+8=38","2(2x+3)+2(4)=38","4x + 14"]},{pt:"Correct rearrangement: 4x = 24 (1 mark)",kw:["4x=24"]},{pt:"x = 6 (1 mark)",kw:["x=6","= 6"]}],
+ model:"Perimeter = 2(length + width) = 2(2x + 3 + 4) = 38 → 2(2x + 7) = 38 → 2x + 7 = 19 → 2x = 12... Check: 4x + 6 + 8 = 38 → 4x = 24 → x = 6. Length = 15 cm, width = 4 cm, perimeter = 38 cm ✓"},
+{type:"short",marks:2,q:"Simplify: x⁵ × x³ ÷ x²",ans:["x^6","x⁶","x6"],why:"Add indices when multiplying (5 + 3 = 8), subtract when dividing (8 − 2 = 6): x⁶."}
+],
+"Ch 6 — Algebra 2":[
+{type:"short",marks:2,q:"Expand and simplify: (x + 5)(x + 2)",ans:["x^2+7x+10","x²+7x+10","x2+7x+10"],why:"FOIL: x² + 2x + 5x + 10 = x² + 7x + 10."},
+{type:"short",marks:2,q:"Expand and simplify: (x − 4)(x + 3)",ans:["x^2-x-12","x²-x-12","x2-x-12","x^2−x−12"],why:"x² + 3x − 4x − 12 = x² − x − 12."},
+{type:"short",marks:2,q:"Expand: (2x − 3)²",ans:["4x^2-12x+9","4x²-12x+9","4x2-12x+9"],why:"(2x − 3)(2x − 3) = 4x² − 6x − 6x + 9. Common mistake: writing 4x² + 9 and forgetting the middle term."},
+{type:"short",marks:2,q:"Factorise: x² + 8x + 15",ans:["(x+3)(x+5)","(x+5)(x+3)"],why:"Two numbers that multiply to +15 and add to +8: 3 and 5."},
+{type:"short",marks:2,q:"Factorise: x² − 5x − 14",ans:["(x-7)(x+2)","(x+2)(x-7)","(x−7)(x+2)","(x+2)(x−7)"],why:"Two numbers that multiply to −14 and add to −5: −7 and +2."},
+{type:"short",marks:2,q:"Factorise: x² − 49",ans:["(x-7)(x+7)","(x+7)(x-7)","(x−7)(x+7)","(x+7)(x−7)"],why:"Difference of two squares: a² − b² = (a − b)(a + b)."},
+{type:"structured",marks:3,q:"Solve by factorising: x² + 3x − 10 = 0",
+ points:[{pt:"Correct factorisation: (x + 5)(x − 2) = 0 (1 mark)",kw:["(x+5)(x-2)","(x-2)(x+5)","(x+5)(x−2)","(x−2)(x+5)"]},{pt:"x = −5 (1 mark)",kw:["-5","−5"]},{pt:"x = 2 (1 mark)",kw:["x=2","= 2"]}],
+ model:"x² + 3x − 10 = (x + 5)(x − 2) = 0, so x = −5 or x = 2."},
+{type:"structured",marks:4,q:"Solve the simultaneous equations:\n3x + 2y = 12\nx − y = 1",
+ points:[{pt:"Correct method: substitution (x = 1 + y) or elimination (multiply second by 2 and add) (1 mark)",kw:["x=1+y","x = 1 + y","2x-2y=2","multiply","substitut","eliminat"]},{pt:"Correct first value: y = 9/5 = 1.8 (1 mark)",kw:["y=1.8","1.8","9/5"]},{pt:"Correct second value: x = 14/5 = 2.8 (1 mark)",kw:["x=2.8","2.8","14/5"]},{pt:"Both values clearly stated / checked in original equation (1 mark)",kw:["check"]}],
+ model:"From x − y = 1: x = 1 + y. Substitute: 3(1 + y) + 2y = 12 → 3 + 5y = 12 → 5y = 9 → y = 1.8. Then x = 2.8. Check: 3(2.8) + 2(1.8) = 8.4 + 3.6 = 12 ✓"},
+{type:"structured",marks:3,q:"Make x the subject: y = (3x − 2)/5",
+ points:[{pt:"Multiply both sides by 5: 5y = 3x − 2 (1 mark)",kw:["5y=3x-2","5y = 3x","5y"]},{pt:"Add 2: 5y + 2 = 3x (1 mark)",kw:["5y+2","+2"]},{pt:"x = (5y + 2)/3 (1 mark)",kw:["x=(5y+2)/3","(5y+2)/3"]}],
+ model:"5y = 3x − 2 → 5y + 2 = 3x → x = (5y + 2)/3"},
+{type:"short",marks:2,q:"Solve the inequality: 2x + 5 < 17. Give your answer in the form x < …",ans:["x<6","x < 6"],why:"2x < 12 → x < 6. The inequality sign stays the same when dividing by a positive number."},
+{type:"short",marks:2,q:"Simplify: (6x² + 9x) / 3x",ans:["2x+3","3+2x"],why:"Factorise the top: 3x(2x + 3), then cancel 3x."}
+]},
+mock:[
+{type:"short",marks:2,q:"Simplify: 7p − 3q − 2p + 8q",ans:["5p+5q","5q+5p"],why:"7p − 2p = 5p; −3q + 8q = 5q."},
+{type:"short",marks:2,q:"Expand and simplify: 5(2x + 1) − 3(x − 4)",ans:["7x+17","17+7x"],why:"10x + 5 − 3x + 12 = 7x + 17. Watch the sign: −3 × (−4) = +12."},
+{type:"short",marks:2,q:"Factorise completely: 10x² − 15x",ans:["5x(2x-3)","5x(2x−3)"],why:"HCF is 5x."},
+{type:"num",marks:2,q:"Given m = −4 and n = 5, find the value of 3m² − 2n",ans:["38"],why:"3 × 16 − 10 = 48 − 10 = 38."},
+{type:"num",marks:3,q:"Solve: 4(x − 2) = 2x + 10",ans:["9","x=9"],why:"4x − 8 = 2x + 10 → 2x = 18 → x = 9."},
+{type:"num",marks:3,q:"Solve: (3x − 1)/4 = 5",ans:["7","x=7"],why:"3x − 1 = 20 → 3x = 21 → x = 7."},
+{type:"short",marks:2,q:"Expand and simplify: (x + 6)(x − 6)",ans:["x^2-36","x²-36","x2-36","x^2−36"],why:"Difference of two squares: x² − 36."},
+{type:"short",marks:3,q:"Expand and simplify: (2x + 1)(x − 5)",ans:["2x^2-9x-5","2x²-9x-5","2x2-9x-5"],why:"2x² − 10x + x − 5 = 2x² − 9x − 5."},
+{type:"short",marks:2,q:"Factorise: x² − 9x + 20",ans:["(x-4)(x-5)","(x-5)(x-4)","(x−4)(x−5)","(x−5)(x−4)"],why:"Numbers multiplying to +20 and adding to −9: −4 and −5."},
+{type:"structured",marks:3,q:"Solve by factorising: x² − 2x − 15 = 0",
+ points:[{pt:"Correct factorisation: (x − 5)(x + 3) = 0 (1 mark)",kw:["(x-5)(x+3)","(x+3)(x-5)","(x−5)(x+3)","(x+3)(x−5)"]},{pt:"x = 5 (1 mark)",kw:["x=5","= 5"]},{pt:"x = −3 (1 mark)",kw:["-3","−3"]}],
+ model:"(x − 5)(x + 3) = 0 → x = 5 or x = −3."},
+{type:"structured",marks:4,q:"Solve the simultaneous equations:\n2x + y = 11\nx − y = 4",
+ points:[{pt:"Correct method: add the equations to eliminate y (1 mark)",kw:["add","eliminat","3x=15","substitut"]},{pt:"x = 5 (1 mark)",kw:["x=5"]},{pt:"y = 1 (1 mark)",kw:["y=1"]},{pt:"Both values stated / checked (1 mark)",kw:["check","x=5,y=1"]}],
+ model:"Adding: 3x = 15 → x = 5. Then 5 − y = 4 → y = 1. Check: 2(5) + 1 = 11 ✓"},
+{type:"structured",marks:3,q:"Make r the subject: A = 4r + 9",
+ points:[{pt:"Subtract 9 from both sides: A − 9 = 4r (1 mark)",kw:["a-9=4r","a−9","-9"]},{pt:"Divide by 4 (1 mark)",kw:["/4","divide"]},{pt:"r = (A − 9)/4 (1 mark)",kw:["r=(a-9)/4","(a-9)/4","(a−9)/4"]}],
+ model:"A − 9 = 4r → r = (A − 9)/4"},
+{type:"short",marks:2,q:"Solve the inequality: 3x − 4 ≥ 11. Give your answer in the form x ≥ …",ans:["x≥5","x >= 5","x>=5","x ≥ 5"],why:"3x ≥ 15 → x ≥ 5."},
+{type:"structured",marks:4,q:"A number x is doubled and 7 is added. The result is the same as subtracting the number from 25. Form an equation and solve for x.",
+ points:[{pt:"Correct equation: 2x + 7 = 25 − x (1 mark)",kw:["2x+7=25-x","2x+7=25−x"]},{pt:"Collect terms: 3x = 18 (1 mark)",kw:["3x=18"]},{pt:"x = 6 (1 mark)",kw:["x=6"]},{pt:"Check: 2(6) + 7 = 19 = 25 − 6 ✓ (1 mark)",kw:["check","19"]}],
+ model:"2x + 7 = 25 − x → 3x = 18 → x = 6. Check: 12 + 7 = 19 and 25 − 6 = 19 ✓"},
+{type:"short",marks:3,q:"Simplify fully: (x² + 5x) / (x² − 25)",ans:["x/(x-5)","x/(x−5)"],why:"Top: x(x + 5). Bottom: (x + 5)(x − 5). Cancel (x + 5) to get x/(x − 5)."}
+]};</script>
+<script id="bank-gp">BANK.gp = {
+name:"GP", exam:"Global Perspectives 0457 · LT1 (Mon 17 Aug AN): Cambridge pattern, written component (source-based skills)",
+mockTime:60,
+chapters:{
+"Skills — Perspectives, Causes & Consequences":[
+{type:"structured",marks:2,q:"Explain the difference between a personal, national and global perspective, using the issue of plastic waste as an example.",
+ points:[{pt:"Personal = individual's viewpoint; national = country level; global = worldwide viewpoint (1 mark)",kw:["individual","country","world","national","global","personal"]},{pt:"Applied to plastic waste, e.g. my family reduces plastic bags / India bans single-use plastics / UN treaty on plastic pollution (1 mark)",kw:["family","ban","india","un","treaty","worldwide","my "]}],
+ model:"A personal perspective is an individual's view (I carry a cloth bag to avoid plastic). A national perspective concerns a country (India's ban on single-use plastics). A global perspective looks worldwide (UN negotiations for a global plastics treaty)."},
+{type:"structured",marks:3,q:"Issue: 'More young people are moving from villages to cities.' State one cause and two consequences of this issue.",
+ points:[{pt:"Cause: jobs/education/better services in cities (1 mark)",kw:["job","education","opportunit","services","wage"]},{pt:"Consequence 1: overcrowding/pressure on housing in cities (or slums, traffic) (1 mark)",kw:["overcrowd","housing","slum","traffic","pressure"]},{pt:"Consequence 2: ageing/shrinking village population, farm labour shortage, families separated (1 mark)",kw:["ageing","aging","village","labour","labor","shortage","left behind","separat"]}],
+ model:"Cause: cities offer more jobs and higher wages. Consequences: cities become overcrowded with pressure on housing and services, while villages lose their young workforce, leaving farms short of labour and elderly people without support."},
+{type:"structured",marks:4,q:"Suggest one local action and one global action that could address climate change, and explain how each helps.",
+ points:[{pt:"Local action identified, e.g. school tree-planting, cycling, energy saving (1 mark)",kw:["tree","cycle","cycling","energy","local","school","community","bus"]},{pt:"Explanation — absorbs CO₂ / cuts emissions (1 mark)",kw:["co2","carbon","absorb","emission","reduce"]},{pt:"Global action identified, e.g. Paris Agreement, international carbon targets, technology sharing (1 mark)",kw:["paris","agreement","international","treaty","targets","un"]},{pt:"Explanation — coordinates all countries so cuts add up worldwide (1 mark)",kw:["countries","coordinate","together","worldwide","commit"]}],
+ model:"Locally, a community tree-planting and cycle-to-school scheme cuts vehicle emissions and absorbs CO₂. Globally, agreements like the Paris Agreement commit all countries to emission-reduction targets, coordinating action so that cuts made in one country are not cancelled out by increases elsewhere."},
+{type:"mcq",marks:1,q:"Which question is a research question suitable for a Global Perspectives investigation?",opts:["What is the capital of Japan?","Should governments ban fast fashion to protect the environment?","How many litres are in a gallon?","When was the UN founded?"],ans:1,why:"Good GP research questions are debatable, with multiple perspectives — not simple factual lookups."}
+],
+"Skills — Sources, Evidence & Bias":[
+{type:"structured",marks:3,q:"A blogger who is paid by a bottled-water company writes: 'Tap water is unsafe everywhere and everyone should buy bottled water.' Evaluate this source's reliability, making three points.",
+ points:[{pt:"Vested interest/bias — paid by the company that benefits (1 mark)",kw:["vested","paid","bias","benefit","sponsor"]},{pt:"Sweeping claim — 'everywhere/everyone' is an overgeneralisation without evidence (1 mark)",kw:["everywhere","overgeneral","sweeping","exaggerat","no evidence","generalis"]},{pt:"Would need to cross-check with independent/expert sources (e.g. WHO, water authority data) (1 mark)",kw:["cross-check","independent","expert","who","verify","other source"]}],
+ model:"The blogger has a vested interest — being paid by a bottled-water company means they benefit from the claim, so bias is likely. The statement 'unsafe everywhere' is a sweeping generalisation with no supporting evidence. To judge the claim we should cross-check with independent expert sources such as WHO or municipal water-quality data."},
+{type:"structured",marks:2,q:"Explain the difference between a fact and an opinion, giving one example of each.",
+ points:[{pt:"Fact: statement that can be checked/proven with evidence; opinion: personal view/belief that cannot be proven (1 mark)",kw:["proven","checked","evidence","verified","belief","view"]},{pt:"Valid examples of each (1 mark)",kw:["e.g","example","for instance",":"]}],
+ model:"A fact can be verified with evidence ('India's population exceeds 1.4 billion'). An opinion is a personal judgement that cannot be proven true or false ('Cricket is the most exciting sport')."},
+{type:"structured",marks:3,q:"State three questions you should ask to test whether a website is a reliable source of evidence.",
+ points:[{pt:"Who is the author/organisation — expertise and purpose? (1 mark)",kw:["author","who wrote","expert","organisation","organization","purpose"]},{pt:"Is it current/dated, and does it cite evidence or references? (1 mark)",kw:["date","current","recent","evidence","references","cite"]},{pt:"Is it biased/one-sided? Do other sources agree (corroboration)? (1 mark)",kw:["bias","one-sided","agree","corroborat","other sources","balanced"]}],
+ model:"Who wrote it and are they qualified — and what is their purpose (inform, sell, persuade)? Is it up to date and does it cite evidence for claims? Is it balanced, and do other independent sources agree with it?"},
+{type:"mcq",marks:1,q:"'8 out of 10 dentists we surveyed recommend our toothpaste' (survey of 10 dentists chosen by the company). The main weakness is:",opts:["Dentists know nothing about toothpaste","The sample is tiny and chosen by the company (biased, unrepresentative)","Percentages cannot be used in surveys","Toothpaste cannot be recommended"],ans:1,why:"A self-selected sample of just 10 cannot represent all dentists — classic misleading statistic."},
+{type:"structured",marks:4,q:"Distinguish between primary and secondary research, giving one example, one strength and one limitation of each.",
+ points:[{pt:"Primary: data you collect yourself (survey, interview, observation) (1 mark)",kw:["yourself","own","survey","interview","first-hand","first hand"]},{pt:"Primary strength/limitation: directly relevant BUT small scale/time-consuming (1 mark)",kw:["relevant","up to date","small","time","sample"]},{pt:"Secondary: data collected by others (books, websites, reports) (1 mark)",kw:["others","books","websites","published","reports","already"]},{pt:"Secondary strength/limitation: large scale/quick BUT may be outdated/biased/not specific (1 mark)",kw:["quick","large","outdated","bias","not specific","cheap"]}],
+ model:"Primary research is data you gather yourself, e.g. a questionnaire to classmates — directly relevant and current, but usually a small, possibly unrepresentative sample. Secondary research uses information others collected, e.g. a UN report — quick to access and large-scale, but it may be out of date, biased, or not answer your exact question."}
+]},
+mock:[
+{type:"structured",marks:2,passage:"Source A — Comment posted on a news website:\n\"Homework should be banned completely. A study of one school in Finland found students were happier without homework. Finland has great schools, so if we ban homework our results will improve too.\"",
+ q:"Identify the claim the writer makes, and one piece of evidence used to support it.",
+ points:[{pt:"Claim: homework should be banned (results/happiness will improve) (1 mark)",kw:["banned","ban homework","claim"]},{pt:"Evidence: study of one Finnish school where students were happier (1 mark)",kw:["finland","finnish","one school","study","happier"]}],
+ model:"Claim: homework should be banned completely (and results will improve). Evidence offered: a study of a single school in Finland where students were happier without homework."},
+{type:"structured",marks:4,passage:"Source A — Comment posted on a news website:\n\"Homework should be banned completely. A study of one school in Finland found students were happier without homework. Finland has great schools, so if we ban homework our results will improve too.\"",
+ q:"Evaluate the strength of the reasoning in Source A. Make four points.",
+ points:[{pt:"Sample of one school — far too small to generalise (1 mark)",kw:["one school","small","sample","generalis"]},{pt:"Happiness ≠ better results — the conclusion switches to 'results will improve' (1 mark)",kw:["happier","results","different","switch","not the same"]},{pt:"False cause/oversimplification: Finland's success has many causes, not just homework policy (1 mark)",kw:["many causes","other factors","false cause","oversimpl","correlation"]},{pt:"What works in one country/context may not transfer; no counter-evidence considered (1 mark)",kw:["context","transfer","different country","counter","one side"]}],
+ model:"The evidence is one school — far too small a sample to support a complete ban. The study measured happiness, but the conclusion claims results will improve — a different thing. It assumes Finland's strong schools are caused by homework policy, ignoring other factors like teacher training and funding (false cause). Finally, what works in Finland's context may not transfer elsewhere, and the writer considers no opposing evidence."},
+{type:"structured",marks:4,q:"Give two different perspectives on the question 'Should social media be restricted for under-16s?' — one supporting restriction and one opposing — with a reason for each.",
+ points:[{pt:"Supporting perspective stated (e.g. parents/health experts) (1 mark)",kw:["parent","health","expert","support","restrict"]},{pt:"Reason: mental health, sleep, cyber-bullying, addiction (1 mark)",kw:["mental","sleep","bully","addict","anxiety","concentrat"]},{pt:"Opposing perspective stated (e.g. teenagers/tech companies/civil liberties) (1 mark)",kw:["teen","young","compan","freedom","oppos","libert"]},{pt:"Reason: connection, information, expression, hard to enforce, education better than bans (1 mark)",kw:["connect","information","express","enforce","education","friends","learn"]}],
+ model:"Many parents and health experts support restriction because heavy use is linked to anxiety, poor sleep and cyber-bullying among younger teens. Many teenagers and digital-rights groups oppose it, arguing social media connects them with friends and information, that bans are hard to enforce, and that education in safe use works better than prohibition."},
+{type:"structured",marks:4,q:"You are planning a school investigation: 'How does fast fashion affect people and the environment?' Describe how you would carry out the research: one primary method, one secondary source, and how you would keep your findings balanced and reliable.",
+ points:[{pt:"Primary method: survey/interview (e.g. classmates' buying habits, local tailor) (1 mark)",kw:["survey","interview","questionnaire","observ"]},{pt:"Secondary source: reports/websites (e.g. UN environment report, news articles, NGO data) (1 mark)",kw:["report","website","article","un","ngo","book","internet"]},{pt:"Balance: include different perspectives (consumers, workers, companies, environmentalists) (1 mark)",kw:["perspectiv","both sides","different views","balance"]},{pt:"Reliability: cross-check several sources, check author/date, avoid biased sites (1 mark)",kw:["cross-check","several sources","check","bias","date","reliab","compare"]}],
+ model:"I would run a questionnaire on classmates' clothes-buying habits (primary), and use secondary sources such as a UN environment report on textile waste. To stay balanced I would include perspectives of consumers, garment workers, companies and environmental groups, and for reliability I would cross-check facts across at least two independent, recent, expert sources."},
+{type:"structured",marks:6,q:"'Banning plastic bags is the best way to reduce plastic pollution.' How far do you agree? Give arguments for and against, and finish with your own justified conclusion.",
+ points:[{pt:"Argument for: bags are a major visible pollutant; bans cut usage quickly (1 mark)",kw:["cut","reduce","effective","visible","litter"]},{pt:"Development/evidence, e.g. countries with bans saw large drops in bag use (1 mark)",kw:["kenya","rwanda","drop","evidence","countries","example"]},{pt:"Argument against: bags are a small share of total plastic waste (packaging, bottles bigger) (1 mark)",kw:["small share","packaging","bottles","other plastic","tip of"]},{pt:"Against: alternatives have costs too (paper/cotton footprint); enforcement problems; affects poor traders (1 mark)",kw:["alternativ","paper","cotton","enforce","poor","cost","reuse"]},{pt:"Balanced weighing of both sides ('however', 'on the other hand') (1 mark)",kw:["however","on the other hand","although","whereas","but "]},{pt:"Clear justified conclusion answering 'how far' (1 mark)",kw:["conclusion","overall","i agree","i disagree","partly","to some extent","therefore"]}],
+ model:"For: bag bans quickly cut a highly visible pollutant — countries like Kenya and Rwanda saw dramatic drops after strict bans. Against: bags are only a small fraction of plastic waste — bottles and packaging matter more — alternatives like cotton bags have their own environmental footprint, and bans are hard to enforce and can hurt small traders. Conclusion (example): bans help but are not 'the best' single answer; combining bans with recycling systems, producer responsibility and consumer education would achieve more — any clear, justified judgement earns the mark."}
+]};</script>
+<script id="bank-evm">BANK.evm = {
+name:"EVM", exam:"Environmental Management · LT1 (Mon 17 Aug AN): Ch 1 Key Skills in EVM, Ch 2 Natural Resources · structured · board pattern",
+mockTime:60,
+chapters:{
+"Ch 1 — Key Skills in EVM":[
+{type:"short",marks:1,q:"State the term for a testable statement or prediction made before an investigation.",ans:["hypothesis"],why:"A hypothesis is a prediction that can be tested by collecting data."},
+{type:"mcq",marks:1,q:"Which graph is most suitable for showing the percentage share of different energy sources in a country?",opts:["Line graph","Pie chart","Scatter graph","Histogram"],ans:1,why:"Pie charts show proportions of a whole."},
+{type:"mcq",marks:1,q:"A scatter graph is used to:",opts:["Show change over time","Show a relationship (correlation) between two variables","Compare categories","Show parts of a whole"],ans:1,why:"Scatter graphs reveal correlations, e.g. rainfall vs crop yield."},
+{type:"structured",marks:3,q:"A student investigates air quality at different distances from a road. Identify the independent variable, the dependent variable, and one variable that should be controlled.",
+ points:[{pt:"Independent: distance from the road (1 mark)",kw:["distance"]},{pt:"Dependent: air quality / pollutant concentration (1 mark)",kw:["air quality","pollut","concentration","particulate"]},{pt:"Controlled: time of day / weather / height of sampling / same equipment (1 mark)",kw:["time","weather","height","equipment","wind","same"]}],
+ model:"Independent variable: distance from the road. Dependent variable: concentration of pollutants (air quality). Controlled: sample at the same time of day, same height, in similar weather, using the same instrument."},
+{type:"structured",marks:3,q:"Explain the difference between random sampling and systematic sampling, and state one advantage of random sampling.",
+ points:[{pt:"Random: every site/individual has an equal chance of selection (e.g. random number tables) (1 mark)",kw:["equal chance","random number","chance","by chance"]},{pt:"Systematic: samples at regular intervals (e.g. every 10 m along a transect) (1 mark)",kw:["regular","interval","every","transect"]},{pt:"Advantage of random: avoids bias (1 mark)",kw:["bias","fair","representative"]}],
+ model:"Random sampling gives every location an equal chance of being chosen (e.g. using random number grids), while systematic sampling takes samples at fixed, regular intervals such as every 10 m along a transect. Random sampling avoids observer bias, making results more representative."},
+{type:"num",marks:2,q:"Rainfall recorded over 5 days was 12, 8, 0, 15 and 5 mm. Calculate the mean daily rainfall in mm.",ans:["8","8mm","8 mm"],why:"(12 + 8 + 0 + 15 + 5) ÷ 5 = 40 ÷ 5 = 8 mm."},
+{type:"structured",marks:2,q:"State two ways of improving the reliability of results in a fieldwork investigation.",
+ points:[{pt:"Repeat readings and calculate a mean (1 mark)",kw:["repeat","mean","average","several"]},{pt:"Larger sample size / more sites / standardised method or calibrated instruments (1 mark)",kw:["sample size","more sites","calibrat","standard","accurate equipment"]}],
+ model:"Repeat each measurement several times and take a mean; increase the number of sampling sites and use the same calibrated equipment and method each time."}
+],
+"Ch 2 — Natural Resources":[
+{type:"structured",marks:2,q:"Define 'renewable resource' and give one example.",
+ points:[{pt:"A resource that is replaced naturally as fast as (or faster than) it is used / will not run out if managed (1 mark)",kw:["replaced","replenish","not run out","naturally","regenerate"]},{pt:"Example: solar, wind, timber, water, tidal, geothermal (1 mark)",kw:["solar","wind","timber","water","tidal","geothermal","wood","biomass"]}],
+ model:"A renewable resource is replenished naturally as fast as it is used, so it will not run out if managed properly — e.g. solar energy, wind, or timber from managed forests."},
+{type:"mcq",marks:1,q:"Which of these is a non-renewable resource?",opts:["Wind","Natural gas","Solar energy","Timber"],ans:1,why:"Fossil fuels (coal, oil, natural gas) take millions of years to form."},
+{type:"structured",marks:3,q:"Explain the term 'sustainable development'.",
+ points:[{pt:"Development meeting the needs of the present (1 mark)",kw:["present","current needs","today"]},{pt:"…without compromising the ability of future generations to meet their needs (1 mark)",kw:["future generations","future"]},{pt:"Balances economic growth, social wellbeing and environmental protection (1 mark)",kw:["econom","social","environment","balance"]}],
+ model:"Sustainable development meets the needs of people today without compromising the ability of future generations to meet their own needs — balancing economic growth, social wellbeing and protection of the environment."},
+{type:"structured",marks:4,q:"Describe two impacts of open-cast (surface) mining on the environment and one strategy to restore the land afterwards.",
+ points:[{pt:"Impact 1: habitat destruction / loss of biodiversity / deforestation (1 mark)",kw:["habitat","biodiversity","deforest","wildlife"]},{pt:"Impact 2: dust and noise pollution / water pollution from run-off / visual scarring / land degradation (1 mark)",kw:["dust","noise","water pollution","visual","scar","erosion","degrad"]},{pt:"Restoration: refill with overburden and topsoil (land restoration) (1 mark)",kw:["refill","topsoil","overburden","restor","landscap"]},{pt:"Replant vegetation / convert to lake, park or farmland (bioremediation/afforestation) (1 mark)",kw:["replant","trees","vegetation","lake","park","afforest"]}],
+ model:"Open-cast mining destroys habitats and reduces biodiversity when vegetation is stripped, and creates dust, noise and polluted run-off that can contaminate rivers. Afterwards, the pit can be refilled with overburden, covered with stored topsoil, and replanted with native vegetation, or converted to a lake or recreational area."},
+{type:"structured",marks:4,q:"Explain two advantages and two disadvantages of generating electricity from wind power.",
+ points:[{pt:"Advantage 1: renewable, will not run out (1 mark)",kw:["renewable","not run out","infinite"]},{pt:"Advantage 2: no greenhouse gases/air pollution while operating; low running costs (1 mark)",kw:["no greenhouse","no carbon","no pollution","clean","running cost"]},{pt:"Disadvantage 1: unreliable — depends on wind speed (1 mark)",kw:["unreliable","wind speed","intermittent","not always"]},{pt:"Disadvantage 2: visual/noise pollution, danger to birds, high set-up cost, large land area (1 mark)",kw:["visual","noise","birds","set-up","setup","expensive to build","land"]}],
+ model:"Advantages: wind is renewable and turbines emit no greenhouse gases while generating, with low running costs. Disadvantages: output is unreliable because it depends on wind speed, and turbines cause visual and noise pollution, can harm birds, and have high construction costs."},
+{type:"short",marks:1,q:"State the term for using resources at a rate at which they can be replaced, so they never run out.",ans:["sustainable use","sustainability","sustainable"],why:"Sustainable use / sustainable resource management."},
+{type:"structured",marks:3,q:"Suggest three ways a school could reduce its use of natural resources.",
+ points:[{pt:"Reduce energy: LED lights, switch off devices, solar panels (1 mark)",kw:["led","switch off","solar","energy","electricity"]},{pt:"Reduce water: rainwater harvesting, fixing leaks, low-flush (1 mark)",kw:["rainwater","water","leak","flush","harvest"]},{pt:"Reduce/reuse/recycle materials: paperless work, recycling bins, reuse (1 mark)",kw:["recycl","paper","reuse","reduce","compost","bins"]}],
+ model:"Install LED lighting and solar panels and switch off unused devices; harvest rainwater and fix leaking taps; go paperless where possible and set up recycling and composting bins."}
+]},
+mock:[
+{type:"mcq",marks:1,q:"The best graph to show how temperature changes over a year is a:",opts:["Pie chart","Line graph","Bar chart of totals","Pictogram"],ans:1,why:"Line graphs show continuous change over time."},
+{type:"structured",marks:3,q:"A student wants to test the hypothesis: 'Soil closer to a river contains more moisture.' Describe a method, including the sampling strategy.",
+ points:[{pt:"Systematic sampling along a transect from the river at regular intervals (e.g. every 5 m) (1 mark)",kw:["transect","regular","interval","systematic","every"]},{pt:"Collect soil samples and measure moisture (weigh, dry in oven, reweigh — or moisture meter) (1 mark)",kw:["weigh","dry","oven","moisture meter","reweigh","mass"]},{pt:"Repeat at each distance / control depth of sample for reliability (1 mark)",kw:["repeat","same depth","reliab","control"]}],
+ model:"Lay a transect at right angles to the river and take soil samples every 5 m (systematic sampling). At each point collect soil from the same depth, weigh it, oven-dry it and reweigh to find moisture content (or use a calibrated moisture meter). Take three samples per point and average them."},
+{type:"num",marks:2,q:"A pie chart shows a country's energy mix. Coal = 144° on the chart. What percentage of the energy mix is coal?",ans:["40","40%"],why:"144 ÷ 360 × 100 = 40%."},
+{type:"structured",marks:3,q:"Classify each as renewable or non-renewable, with a brief reason: (a) geothermal energy, (b) coal, (c) hardwood from an unmanaged rainforest.",
+ points:[{pt:"(a) Geothermal — renewable: Earth's heat is continuously produced (1 mark)",kw:["geothermal renewable","renewable: earth","continuous","(a) renewable"]},{pt:"(b) Coal — non-renewable: takes millions of years to form (1 mark)",kw:["non-renewable","millions of years","fossil"]},{pt:"(c) Effectively non-renewable/unsustainable: harvested faster than it regrows (1 mark)",kw:["faster than","not replaced","unsustainable","slow","regrow"]}],
+ model:"(a) Renewable — heat from the Earth's interior is continuously generated. (b) Non-renewable — coal takes millions of years to form. (c) Although trees can regrow, unmanaged rainforest hardwood is used faster than it is replaced, so in practice it is non-renewable (unsustainable use)."},
+{type:"structured",marks:4,q:"A country plans to build a large hydroelectric dam. Explain two benefits and two problems this could create.",
+ points:[{pt:"Benefit 1: renewable, low-carbon electricity (1 mark)",kw:["renewable","clean","no carbon","low carbon","greenhouse"]},{pt:"Benefit 2: water storage/irrigation/flood control/jobs (1 mark)",kw:["irrigation","flood","reservoir","jobs","water supply"]},{pt:"Problem 1: flooding land — displacement of people / habitat loss (1 mark)",kw:["flood","displace","relocat","habitat","submerg"]},{pt:"Problem 2: blocks fish migration / sediment trapped / affects downstream flow / high cost (1 mark)",kw:["fish","sediment","downstream","cost","silt"]}],
+ model:"Benefits: hydroelectricity is renewable and emits almost no greenhouse gases, and the reservoir can provide irrigation water and flood control. Problems: the reservoir floods large areas, displacing communities and destroying habitats, and the dam blocks fish migration and traps sediment, reducing fertility downstream."},
+{type:"structured",marks:4,q:"Explain the difference between 'reuse' and 'recycle', and give one example of each for plastic bottles.",
+ points:[{pt:"Reuse: using the item again in its existing form (1 mark)",kw:["again","same form","existing","without processing"]},{pt:"Reuse example: refilling bottles / using as planters (1 mark)",kw:["refill","planter","container","again as"]},{pt:"Recycle: reprocessing the material into new products (1 mark)",kw:["reprocess","melt","new product","raw material"]},{pt:"Recycle example: melting bottles into fleece/pellets/new bottles (1 mark)",kw:["fleece","pellet","new bottle","melt"]}],
+ model:"Reuse means using the object again in its current form — e.g. refilling a plastic bottle with water or using it as a plant pot. Recycling means reprocessing the material itself — bottles are collected, melted into pellets and made into new products such as fleece clothing."},
+{type:"structured",marks:3,q:"Suggest three strategies a government could use to make fossil fuel use more sustainable while renewable capacity is built.",
+ points:[{pt:"Improve efficiency: efficient power stations, vehicle standards, insulation (1 mark)",kw:["efficien","insulat","standards"]},{pt:"Cleaner technology: flue-gas desulfurisation, carbon capture and storage (1 mark)",kw:["carbon capture","ccs","scrubber","desulfur","clean coal"]},{pt:"Policy: carbon taxes, subsidies for renewables, public transport, education (1 mark)",kw:["tax","subsid","public transport","education","law","quota"]}],
+ model:"Raise energy efficiency (building insulation standards, efficient vehicles and power plants); fit cleaner technology such as carbon capture and storage and flue-gas scrubbers; and use policy — carbon taxes, renewable subsidies, better public transport and public education — to cut demand."}
+]};</script>
+<script id="bank-accounts">BANK.accounts = {
+name:"Accounts", exam:"IGCSE/O Level Accounting · LT1 (Tue 18 Aug FN): Section 1, Chapters 1–5 · 1 hour · 40 marks · board pattern",
+mockTime:60,
+chapters:{
+"Ch 1 — Purpose of Accounting":[
+{type:"structured",marks:2,q:"State the difference between book-keeping and accounting.",
+ points:[{pt:"Book-keeping: recording financial transactions in a systematic way (1 mark)",kw:["record","transactions"]},{pt:"Accounting: using those records — preparing statements, analysing, interpreting results (1 mark)",kw:["analys","interpret","statements","summaris","prepare"]}],
+ model:"Book-keeping is the detailed recording of all financial transactions. Accounting uses those records to prepare financial statements and to analyse and interpret the results for decision-making."},
+{type:"mcq",marks:1,q:"The accounting equation is:",opts:["Assets = Capital − Liabilities","Assets = Capital + Liabilities","Capital = Assets + Liabilities","Liabilities = Assets + Capital"],ans:1,why:"Assets = Capital + Liabilities (resources = who financed them)."},
+{type:"num",marks:2,q:"A business has assets of ₹85,000 and liabilities of ₹32,000. Calculate the capital (₹).",ans:["53000","₹53000","53,000"],why:"Capital = Assets − Liabilities = 85,000 − 32,000 = ₹53,000."},
+{type:"mcq",marks:1,q:"Which of these is a non-current (fixed) asset?",opts:["Inventory","Trade receivables","Machinery","Bank balance"],ans:2,why:"Machinery is held long-term for use, not resale."},
+{type:"mcq",marks:1,q:"Money owed BY the business to suppliers for goods bought on credit is called:",opts:["Trade receivables","Trade payables","Capital","Drawings"],ans:1,why:"Trade payables (creditors) — amounts the business must pay."},
+{type:"short",marks:1,q:"State the term for goods or money taken from the business by the owner for personal use.",ans:["drawings"],why:"Drawings reduce capital."}
+],
+"Ch 2 & 3 — Double Entry & Ledger":[
+{type:"mcq",marks:1,q:"The rule of double entry is:",opts:["Every debit has an equal credit","Debits are always greater than credits","Assets are always credited","Only cash transactions are recorded twice"],ans:0,why:"Every transaction is recorded twice: a debit in one account, an equal credit in another."},
+{type:"mcq",marks:1,q:"An increase in an asset is recorded as a:",opts:["Credit","Debit","Balance","Contra"],ans:1,why:"Assets and expenses increase on the debit side; liabilities, capital and income increase on the credit side."},
+{type:"structured",marks:2,q:"Bought a delivery van for ₹200,000, paying by cheque. State the account debited and the account credited.",
+ points:[{pt:"Debit: Motor van / Motor vehicles account (1 mark)",kw:["debit van","debit motor","van account","dr motor","dr van","debit: motor","debit: van"]},{pt:"Credit: Bank account (1 mark)",kw:["credit bank","cr bank","credit: bank"]}],
+ model:"Debit Motor Van account ₹200,000 (asset increases); Credit Bank account ₹200,000 (asset decreases)."},
+{type:"structured",marks:2,q:"Sold goods on credit to Kumar for ₹8,000. State the account debited and the account credited.",
+ points:[{pt:"Debit: Kumar (trade receivable) (1 mark)",kw:["debit kumar","dr kumar","debit: kumar"]},{pt:"Credit: Sales account (1 mark)",kw:["credit sales","cr sales","credit: sales"]}],
+ model:"Debit Kumar's account ₹8,000 (receivable increases); Credit Sales account ₹8,000 (income increases)."},
+{type:"structured",marks:2,q:"The owner introduced ₹50,000 cash into the business. State the account debited and the account credited.",
+ points:[{pt:"Debit: Cash account (1 mark)",kw:["debit cash","dr cash","debit: cash"]},{pt:"Credit: Capital account (1 mark)",kw:["credit capital","cr capital","credit: capital"]}],
+ model:"Debit Cash ₹50,000 (asset increases); Credit Capital ₹50,000 (owed to owner increases)."},
+{type:"mcq",marks:1,q:"Kumar returns damaged goods he had bought from us on credit. We record:",opts:["Debit Sales, Credit Kumar","Debit Sales Returns, Credit Kumar","Debit Kumar, Credit Purchases Returns","Debit Purchases, Credit Kumar"],ans:1,why:"Sales returns (returns inwards) is debited; the customer's account is credited to cancel the debt."},
+{type:"short",marks:1,q:"Which side of a ledger account does the balance b/d of an asset account normally appear on?",ans:["debit","debit side","dr"],why:"Asset accounts normally have debit balances."},
+{type:"mcq",marks:1,q:"Which account normally has a credit balance?",opts:["Purchases","Rent expense","Sales","Machinery"],ans:2,why:"Sales is income — a credit balance. Purchases and expenses have debit balances."}
+],
+"Ch 4 — Trial Balance":[
+{type:"structured",marks:2,q:"State two purposes of preparing a trial balance.",
+ points:[{pt:"Checks arithmetic accuracy of double entry (totals of debit and credit balances agree) (1 mark)",kw:["arithmetic","accuracy","agree","check","equal"]},{pt:"Convenient list of balances for preparing financial statements (1 mark)",kw:["financial statements","list of balances","income statement","summary","prepare"]}],
+ model:"1) It checks the arithmetic accuracy of the double entry — total debits should equal total credits. 2) It provides a convenient summary of all ledger balances for preparing the financial statements."},
+{type:"mcq",marks:1,q:"Which of these errors is NOT revealed by a trial balance?",opts:["Adding an account balance incorrectly","Recording only the debit entry of a transaction","Complete omission of a transaction","Entering different amounts for the debit and credit entries"],ans:2,why:"Errors of complete omission (also commission, principle, original entry, reversal, compensating) leave the trial balance in agreement."},
+{type:"short",marks:1,q:"Rent paid appears in the trial balance as a ______ balance. (debit/credit)",ans:["debit","dr"],why:"Expenses have debit balances."},
+{type:"mcq",marks:1,q:"Goods sold to Anand were entered in Ahmed's account. This is an error of:",opts:["Principle","Commission","Omission","Original entry"],ans:1,why:"Error of commission — right type of account, wrong person's account."},
+{type:"mcq",marks:1,q:"Repairs to a machine were debited to the Machinery account. This is an error of:",opts:["Commission","Compensating","Principle","Reversal"],ans:2,why:"Error of principle — expense treated as an asset (wrong class of account)."},
+{type:"structured",marks:3,q:"A trial balance fails to agree and the difference is entered in a suspense account. Explain what a suspense account is and when it is closed.",
+ points:[{pt:"Temporary account holding the trial balance difference (1 mark)",kw:["temporary","difference","holds","until"]},{pt:"Used so financial statements can be drafted while errors are found (1 mark)",kw:["draft","statements","errors found","meanwhile"]},{pt:"Closed when all errors are located and corrected by journal entries (1 mark)",kw:["corrected","journal","located","closed"]}],
+ model:"A suspense account is a temporary account opened for the difference when the trial balance totals disagree. It lets draft financial statements be prepared while the errors are traced, and it is closed once every error is found and corrected through journal entries."}
+],
+"Ch 5 — Books of Prime Entry & Documents":[
+{type:"mcq",marks:1,q:"Credit purchases of goods for resale are first recorded in the:",opts:["Sales journal","Purchases journal","Cash book","General journal"],ans:1,why:"The purchases journal (purchases day book) lists credit purchases of trading goods."},
+{type:"mcq",marks:1,q:"Which document does a seller send to a buyer showing the amount owed for goods supplied on credit?",opts:["Receipt","Invoice","Credit note","Statement of account... at year end only"],ans:1,why:"The invoice shows quantity, price and total owed for a credit sale."},
+{type:"short",marks:1,q:"Which document is issued to a customer when goods are returned, reducing the amount they owe?",ans:["credit note"],why:"A credit note is issued by the seller for returns inwards."},
+{type:"structured",marks:2,q:"Distinguish between trade discount and cash discount.",
+ points:[{pt:"Trade discount: reduction in list price (e.g. for bulk/trade buyers); NOT recorded in double entry (1 mark)",kw:["list price","bulk","not recorded","trade buyer","reduction in price"]},{pt:"Cash discount: allowed for prompt payment within set time; IS recorded (discount allowed/received) (1 mark)",kw:["prompt","early","quick payment","within","recorded"]}],
+ model:"Trade discount is a reduction in the list price given, e.g., for buying in bulk — it is deducted on the invoice and never entered in the ledger. Cash discount is an allowance for paying within an agreed time, and it is recorded (discount allowed for customers, discount received from suppliers)."},
+{type:"mcq",marks:1,q:"In a three-column cash book, the columns are:",opts:["Cash, bank, capital","Discount, cash, bank","Sales, purchases, returns","Debit, credit, balance"],ans:1,why:"Discount (memorandum), cash and bank columns."},
+{type:"short",marks:1,q:"A cheque received from a customer that the bank refuses to pay is called a ______ cheque.",ans:["dishonoured","dishonored","bounced"],why:"A dishonoured cheque — the entry is reversed and the customer owes the money again."},
+{type:"structured",marks:3,q:"Name the book of prime entry for each: (a) sale of old office furniture on credit, (b) goods returned by our customer, (c) credit sale of goods.",
+ points:[{pt:"(a) General journal (1 mark)",kw:["general journal","journal proper","the journal"]},{pt:"(b) Sales returns journal / returns inwards journal (1 mark)",kw:["sales returns","returns inwards"]},{pt:"(c) Sales journal / sales day book (1 mark)",kw:["sales journal","sales day book"]}],
+ model:"(a) General journal — sale of a non-current asset is not a trading sale. (b) Sales returns (returns inwards) journal. (c) Sales journal."}
+]},
+mock:[
+{type:"mcq",marks:1,q:"Assets ₹120,000; Capital ₹80,000. Liabilities are:",opts:["₹200,000","₹40,000","₹80,000","₹120,000"],ans:1,why:"Liabilities = Assets − Capital = ₹40,000."},
+{type:"mcq",marks:1,q:"Which is a current liability?",opts:["Bank overdraft","Machinery","Trade receivables","Premises"],ans:0,why:"An overdraft is repayable in the short term."},
+{type:"mcq",marks:1,q:"Paid rent by cheque. The entries are:",opts:["Debit Bank, Credit Rent","Debit Rent, Credit Bank","Debit Rent, Credit Cash","Debit Landlord, Credit Bank"],ans:1,why:"Expense increases → debit Rent; bank asset decreases → credit Bank."},
+{type:"mcq",marks:1,q:"Bought goods for resale on credit from Meena. The entries are:",opts:["Debit Meena, Credit Purchases","Debit Purchases, Credit Meena","Debit Goods, Credit Cash","Debit Sales, Credit Meena"],ans:1,why:"Debit Purchases (expense/goods in); credit Meena (payable increases)."},
+{type:"mcq",marks:1,q:"Which error IS revealed by the trial balance?",opts:["Error of principle","Error of complete omission","Single-sided entry (debit recorded, credit missed)","Error of commission"],ans:2,why:"A one-sided entry makes total debits ≠ total credits."},
+{type:"mcq",marks:1,q:"The purchases journal is totalled and posted to the:",opts:["Credit of Purchases account","Debit of Purchases account","Debit of each supplier's account","Credit of Sales account"],ans:1,why:"Total is debited to Purchases; each supplier's account is credited individually."},
+{type:"short",marks:1,q:"State the document a buyer sends with a payment, listing invoices being paid.",ans:["remittance advice"],why:"A remittance advice accompanies payment."},
+{type:"num",marks:2,q:"Goods with a list price of ₹10,000 are sold subject to 20% trade discount. What amount is recorded in the sales journal (₹)?",ans:["8000","₹8000","8,000"],why:"10,000 − 20% = ₹8,000. Trade discount is deducted before recording."},
+{type:"num",marks:2,q:"A customer owing ₹5,000 pays by cheque within 10 days and receives 2% cash discount. How much is received (₹)?",ans:["4900","₹4900","4,900"],why:"5,000 − 2% (₹100 discount allowed) = ₹4,900."},
+{type:"structured",marks:4,q:"For each transaction state the account debited and the account credited:\n(a) Owner took ₹2,000 cash for personal use.\n(b) Received ₹9,800 by cheque from Kumar in settlement of his account.",
+ points:[{pt:"(a) Debit Drawings (1 mark)",kw:["debit drawings","dr drawings","debit: drawings"]},{pt:"(a) Credit Cash (1 mark)",kw:["credit cash","cr cash","credit: cash"]},{pt:"(b) Debit Bank (1 mark)",kw:["debit bank","dr bank","debit: bank"]},{pt:"(b) Credit Kumar (1 mark)",kw:["credit kumar","cr kumar","credit: kumar"]}],
+ model:"(a) Debit Drawings ₹2,000; Credit Cash ₹2,000. (b) Debit Bank ₹9,800; Credit Kumar ₹9,800 (plus Discount Allowed if settlement discount applies)."},
+{type:"structured",marks:5,q:"Prepare the trial balance headings and state on which side each balance goes: Capital ₹60,000; Purchases ₹25,000; Sales ₹40,000; Machinery ₹50,000; Bank overdraft ₹5,000; Rent paid ₹8,000; Trade receivables ₹22,000.",
+ points:[{pt:"Debit: Purchases ₹25,000 and Rent ₹8,000 (1 mark)",kw:["purchases debit","purchases: debit","purchases - debit","purchases dr","rent debit","rent dr"]},{pt:"Debit: Machinery ₹50,000 (1 mark)",kw:["machinery debit","machinery dr","machinery: debit"]},{pt:"Debit: Trade receivables ₹22,000 (1 mark)",kw:["receivables debit","receivables dr","debtors debit"]},{pt:"Credit: Capital ₹60,000 and Sales ₹40,000 (1 mark)",kw:["capital credit","capital cr","sales credit","sales cr"]},{pt:"Credit: Bank overdraft ₹5,000; totals agree at ₹105,000 (1 mark)",kw:["overdraft credit","overdraft cr","105000","105,000"]}],
+ model:"Debit side: Purchases 25,000; Rent 8,000; Machinery 50,000; Trade receivables 22,000 = 105,000. Credit side: Capital 60,000; Sales 40,000; Bank overdraft 5,000 = 105,000. Totals agree ✓"},
+{type:"structured",marks:5,q:"Explain, with one example each, any three errors NOT revealed by a trial balance.",
+ points:[{pt:"Complete omission — transaction entirely left out (1 mark)",kw:["omission","left out","not recorded"]},{pt:"Commission — correct class, wrong personal account (1 mark)",kw:["commission","wrong person","wrong account of the same"]},{pt:"Principle — wrong class of account (expense as asset) (1 mark)",kw:["principle","wrong class","expense as asset","capital expenditure"]},{pt:"Original entry — wrong amount in book of prime entry / Reversal — debit and credit swapped / Compensating — errors cancel (1 mark)",kw:["original entry","reversal","compensating","wrong amount","swapped","cancel"]},{pt:"Appropriate example given for each error named (1 mark)",kw:["e.g","example","for instance","such as"]}],
+ model:"1) Complete omission: a credit sale to Ravi never recorded anywhere. 2) Commission: payment received from Anand entered in Arnav's account. 3) Principle: machine repairs debited to Machinery (asset) instead of Repairs (expense). Others: original entry (invoice ₹450 entered as ₹540 in both accounts), complete reversal, and compensating errors."},
+{type:"structured",marks:4,q:"Complete the double entry for each transaction (account debited and credited):\n(a) Bought office equipment on credit from OfficeMart.\n(b) Returned damaged goods to our supplier Meena.",
+ points:[{pt:"(a) Debit Office Equipment (1 mark)",kw:["debit office equipment","debit equipment","dr equipment","debit: office equipment","debit: equipment"]},{pt:"(a) Credit OfficeMart (1 mark)",kw:["credit officemart","cr officemart","credit: officemart"]},{pt:"(b) Debit Meena (1 mark)",kw:["debit meena","dr meena","debit: meena"]},{pt:"(b) Credit Purchases Returns / Returns Outwards (1 mark)",kw:["purchases returns","returns outwards","credit purchases return"]}],
+ model:"(a) Debit Office Equipment (asset up); Credit OfficeMart (payable up). (b) Debit Meena (payable down); Credit Purchases Returns / Returns Outwards."},
+{type:"structured",marks:6,q:"Rahul's trial balance totals: Debit ₹98,400, Credit ₹99,000. He opens a suspense account. He then finds: (i) a cash sale of ₹600 was not posted to the Sales account; (ii) rent of ₹1,200 was debited to the Rent account twice.\nExplain the entries needed to correct each error and state whether the suspense account is now closed.",
+ points:[{pt:"(i) Credit Sales ₹600 (1 mark)",kw:["credit sales","cr sales"]},{pt:"(i) Debit Suspense ₹600 (1 mark)",kw:["debit suspense","dr suspense"]},{pt:"(ii) Credit Rent ₹1,200 (1 mark)",kw:["credit rent","cr rent"]},{pt:"(ii) Debit Suspense ₹1,200 (1 mark)",kw:["debit suspense","suspense 1200","suspense ₹1,200"]},{pt:"Suspense had ₹600 credit... net effect: opening difference ₹600 credited... final balance zero — account closed (1 mark)",kw:["closed","zero","balance"]},{pt:"Clear reasoning shown for direction of each correction (1 mark)",kw:["because","since","omitted","twice","posted"]}],
+ model:"The trial balance credit side exceeds debit by ₹600, so Suspense opens with a ₹600 debit balance... Correction (i): the sale was never credited to Sales — Credit Sales ₹600, Debit Suspense ₹600. Correction (ii): Rent was debited twice — Credit Rent ₹1,200, Debit Suspense ₹1,200. (Exam focus: each correction posts the missing/extra side through Suspense; when all one-sided errors are corrected the suspense account balances to zero and is closed.)"},
+{type:"structured",marks:5,q:"Describe the flow of documents in a credit sale, from order to payment, naming four documents in the correct order and the purpose of each.",
+ points:[{pt:"Purchase order — buyer requests goods (1 mark)",kw:["purchase order","order"]},{pt:"Invoice — seller states quantity, price, amount owed (1 mark)",kw:["invoice"]},{pt:"Credit note (if returns) and/or statement of account — monthly summary sent to buyer (1 mark)",kw:["credit note","statement"]},{pt:"Cheque/payment with remittance advice; receipt may be issued (1 mark)",kw:["remittance","cheque","payment","receipt"]},{pt:"Purposes correctly explained in sequence (1 mark)",kw:["purpose","shows","summar","request"]}],
+ model:"Buyer sends a purchase order requesting goods → seller delivers and sends an invoice showing the amount owed → if goods are returned, seller issues a credit note; at month-end a statement of account summarises transactions and balance → buyer pays (cheque/transfer) with a remittance advice, and may receive a receipt."}
+]};</script>
+<script id="bank-business">BANK.business = {
+name:"Business", exam:"O Level Business (7081/0264) · LT1 (Wed 19 Aug FN, 1h10m): Chapters 1–4 · MCQ 10 + structured 30",
+mockTime:70,
+chapters:{
+"Ch 1 — Business Activity":[
+{type:"mcq",marks:1,q:"The basic economic problem is that:",opts:["Prices always rise over time","Wants are unlimited but resources are limited (scarcity)","Businesses make too much profit","There are not enough workers"],ans:1,why:"Unlimited wants + finite resources = scarcity, forcing choices."},
+{type:"short",marks:1,q:"State the term for the next best alternative given up when a choice is made.",ans:["opportunity cost"],why:"Opportunity cost — the benefit of the next best alternative forgone."},
+{type:"mcq",marks:1,q:"Which of these is a NEED rather than a want?",opts:["A smartphone","Clean drinking water","A holiday abroad","A branded school bag"],ans:1,why:"Needs are essential for survival: food, water, shelter, clothing."},
+{type:"structured",marks:4,q:"Define 'added value' and explain two ways a bakery could increase its added value.",
+ points:[{pt:"Definition: difference between selling price and cost of bought-in materials (1 mark)",kw:["selling price","cost of materials","difference","bought-in"]},{pt:"Way 1 identified, e.g. branding/packaging/quality (1 mark)",kw:["brand","packag","quality","decorat","organic","premium"]},{pt:"Way 1 explained — allows a higher price to be charged (1 mark)",kw:["higher price","charge more","premium price"]},{pt:"Way 2 identified and explained, e.g. convenience, service, custom cakes (1 mark)",kw:["convenien","service","custom","deliver"]}],
+ model:"Added value is the difference between the selling price of a product and the cost of the materials bought in to make it. The bakery could build a strong brand with attractive packaging, letting it charge a higher price for the same cost of ingredients. It could also make customised celebration cakes, a service customers will pay significantly more for."},
+{type:"structured",marks:3,q:"Explain why specialisation makes workers more efficient. Give one possible drawback.",
+ points:[{pt:"Workers focus on one task they are best at / become skilled through repetition (1 mark)",kw:["one task","repeat","skill","best at","focus"]},{pt:"Output per worker (productivity) rises / less time wasted switching tasks (1 mark)",kw:["productivity","output","faster","efficien","time"]},{pt:"Drawback: boredom/demotivation, or over-dependence on one skill (1 mark)",kw:["bored","monoton","demotiv","dependent","repetitive"]}],
+ model:"Specialisation lets each worker concentrate on the task they do best; constant repetition builds skill and speed, so output per worker rises. A drawback is that repetitive work can become boring, lowering motivation and possibly quality."},
+{type:"mcq",marks:1,q:"Consumers, workers, the government and the local community are all examples of a business's:",opts:["Shareholders","Stakeholders","Managers","Competitors"],ans:1,why:"Stakeholders are all groups with an interest in the business; shareholders are only its owners."}
+],
+"Ch 2 — Economic Sectors & Classification":[
+{type:"mcq",marks:1,q:"Fishing, farming and mining belong to which sector of the economy?",opts:["Primary","Secondary","Tertiary","Quaternary"],ans:0,why:"Primary sector extracts natural resources."},
+{type:"mcq",marks:1,q:"A company that assembles cars is in the ______ sector, while the showroom that sells them is in the ______ sector.",opts:["primary; secondary","secondary; tertiary","tertiary; secondary","primary; tertiary"],ans:1,why:"Manufacturing = secondary; retailing (a service) = tertiary."},
+{type:"structured",marks:3,q:"Explain what 'de-industrialisation' means and state one reason it happens in developing economies.",
+ points:[{pt:"Decline in the importance/share of the secondary (manufacturing) sector (1 mark)",kw:["decline","secondary","manufactur","fall","reduc"]},{pt:"Tertiary/service sector grows in relative importance (1 mark)",kw:["tertiary","service","grows","increas"]},{pt:"Reason: rising incomes → more demand for services / cheaper imports of manufactured goods (1 mark)",kw:["income","demand for services","imports","cheaper"]}],
+ model:"De-industrialisation is the decline in the secondary sector's share of output and employment while the tertiary sector grows. As incomes rise, people spend proportionately more on services like travel, banking and entertainment, and manufactured goods are often imported more cheaply from abroad."},
+{type:"short",marks:1,q:"In which type of economy do both private businesses and the government own resources?",ans:["mixed economy","mixed"],why:"A mixed economy combines a private sector and a public (state-owned) sector."},
+{type:"structured",marks:4,q:"The government of a country plans to privatise its state-owned airline. Explain one advantage and one disadvantage of privatisation.",
+ points:[{pt:"Advantage identified, e.g. profit motive raises efficiency / access to private capital (1 mark)",kw:["efficien","profit motive","capital","investment","competition"]},{pt:"Advantage explained with development (1 mark)",kw:["costs","lower","better service","incentive"]},{pt:"Disadvantage identified, e.g. job cuts / unprofitable routes closed / prices may rise (1 mark)",kw:["job","unprofitable","routes","prices","redundan"]},{pt:"Disadvantage explained with development (1 mark)",kw:["community","workers","consumers","essential"]}],
+ model:"Advantage: private owners have a profit motive, so they cut waste and improve service to attract customers, making the airline more efficient. Disadvantage: to raise profits the new owners may cut jobs or close unprofitable but socially useful routes, harming workers and remote communities."}
+],
+"Ch 3 — Enterprise, Growth & Size":[
+{type:"structured",marks:4,q:"State four characteristics of a successful entrepreneur.",
+ points:[{pt:"Risk-taker (1 mark)",kw:["risk"]},{pt:"Creative/innovative (1 mark)",kw:["creativ","innovat","ideas"]},{pt:"Hard-working / determined / resilient / optimistic (1 mark)",kw:["hard","determin","resilien","optimis","persever"]},{pt:"Good communicator / leader / self-confident / good at planning (1 mark)",kw:["communicat","leader","confiden","planning","organis"]}],
+ model:"Risk-taker, innovative/creative, determined and hard-working, self-confident with strong communication and planning skills."},
+{type:"short",marks:1,q:"What name is given to the document in which an entrepreneur sets out objectives, target market, forecasts and finance needed?",ans:["business plan"],why:"A business plan — often required by banks before lending."},
+{type:"structured",marks:3,q:"Explain two reasons why governments support business start-ups.",
+ points:[{pt:"Reason 1: create jobs / reduce unemployment (1 mark)",kw:["jobs","employment","unemploy"]},{pt:"Reason 2: increase competition / output / economic growth / future tax revenue (1 mark)",kw:["competition","growth","output","tax","gdp"]},{pt:"Development of either reason, e.g. grants, low-interest loans, training schemes offered (1 mark)",kw:["grant","loan","training","subsid","advice"]}],
+ model:"Start-ups create jobs, cutting unemployment and benefits spending. They also add competition and output, which grows the economy and future tax revenue — so governments offer grants, cheap loans, and training to new entrepreneurs."},
+{type:"mcq",marks:1,q:"Which of these is an INTERNAL method of business growth?",opts:["Taking over a rival firm","Merging with a supplier","Opening additional branches using retained profit","Buying a business in another industry"],ans:2,why:"Internal (organic) growth uses the firm's own resources; takeovers and mergers are external growth."},
+{type:"mcq",marks:1,q:"A car manufacturer takes over a steel producer. This is:",opts:["Horizontal integration","Vertical integration backward","Vertical integration forward","Conglomerate integration"],ans:1,why:"Backward vertical = joining with a firm at an earlier stage of production (its supplier)."},
+{type:"structured",marks:4,q:"Explain two ways the size of a business can be measured, and give one problem with each.",
+ points:[{pt:"Measure 1: number of employees (1 mark)",kw:["employees","workers","staff"]},{pt:"Problem: capital-intensive firms have few workers but may be large (1 mark)",kw:["capital-intensive","capital intensive","automation","machines","few workers"]},{pt:"Measure 2: value of output/sales revenue/capital employed (1 mark)",kw:["output","sales","revenue","capital employed","turnover"]},{pt:"Problem: high sales may come from few expensive items / value changes with prices; profit is NOT a size measure (1 mark)",kw:["expensive","price","not profit","inflation","misleading"]}],
+ model:"Size can be measured by number of employees — but an automated, capital-intensive factory may employ few people yet be very large. It can also be measured by sales revenue — but a jeweller selling a few costly items could look 'bigger' than a busy grocery store. (Note: profit is not an accepted measure of size.)"},
+{type:"structured",marks:3,q:"State three reasons why some businesses stay small.",
+ points:[{pt:"Owner's choice — wants to keep control / avoid stress (1 mark)",kw:["control","choice","owner","stress","lifestyle"]},{pt:"Small market — niche/local/personal service (1 mark)",kw:["niche","local","small market","personal"]},{pt:"Lack of finance/capital to expand (1 mark)",kw:["finance","capital","funds","money","loan"]}],
+ model:"The owner may prefer to keep full control; the market itself may be small (e.g. a local tailoring service); or the business may lack the capital needed to expand."}
+],
+"Ch 4 — Types of Business Organisation":[
+{type:"mcq",marks:1,q:"The main disadvantage of a sole trader is:",opts:["Profits must be shared","Unlimited liability","Accounts must be published","Decisions are slow"],ans:1,why:"A sole trader has unlimited liability — personal assets can be taken to pay business debts."},
+{type:"short",marks:1,q:"State the term meaning the owners of a company can lose only the amount they invested.",ans:["limited liability"],why:"Limited liability — shareholders' personal possessions are protected."},
+{type:"mcq",marks:1,q:"A business that is a separate legal entity from its owners is called:",opts:["A partnership","A sole trader","An incorporated business (company)","A franchise"],ans:2,why:"Companies are incorporated: the business can own assets, sue and be sued in its own name."},
+{type:"structured",marks:4,q:"Ravi runs a grocery shop alone. His friend suggests forming a partnership. Explain two advantages and one disadvantage to Ravi of forming a partnership.",
+ points:[{pt:"Advantage 1: more capital invested by partner (1 mark)",kw:["capital","money","finance","invest"]},{pt:"Advantage 2: shared workload/decisions/skills; losses shared (1 mark)",kw:["share","workload","skills","ideas","losses","holiday"]},{pt:"Disadvantage: profits shared / disagreements / unlimited liability remains / liable for partner's decisions (1 mark)",kw:["profit","disagree","unlimited","conflict","liable"]},{pt:"Development/application to Ravi's shop (1 mark)",kw:["shop","grocery","ravi","longer hours","expand"]}],
+ model:"A partner would bring extra capital, letting Ravi stock more goods or renovate the shop, and would share the workload and decision-making so the shop can open longer hours. However, profits must now be shared, and Ravi still has unlimited liability — including for debts from his partner's decisions."},
+{type:"structured",marks:4,q:"Explain two differences between a private limited company (Ltd) and a public limited company (PLC).",
+ points:[{pt:"Ltd shares sold privately with consent; PLC shares sold to the public on stock exchange (1 mark)",kw:["stock exchange","public","privately","general public"]},{pt:"Development: PLC can raise far more capital (1 mark)",kw:["more capital","raise","large"]},{pt:"Ltd often keeps family/owner control; PLC risks takeover and divorce of ownership from control (1 mark)",kw:["control","takeover","ownership","directors","family"]},{pt:"PLC faces stricter disclosure — must publish detailed accounts (1 mark)",kw:["publish","accounts","disclos","legal","report"]}],
+ model:"A PLC can sell shares to the general public on a stock exchange, so it can raise far more capital than an Ltd, whose shares are transferred only privately. But a PLC must publish detailed accounts and can be taken over if enough shares are bought, whereas an Ltd's original owners usually keep control."},
+{type:"structured",marks:3,q:"Define 'franchise' and explain one benefit to the franchisee.",
+ points:[{pt:"Definition: right to trade using an existing firm's name/brand/products, bought from the franchisor (1 mark)",kw:["name","brand","franchisor","licence","license","right to"]},{pt:"Benefit: well-known brand → customers from day one / lower risk of failure (1 mark)",kw:["known","brand","customers","risk","established"]},{pt:"Development: training, advertising, supplies provided by franchisor (1 mark)",kw:["training","advertis","support","supplies"]}],
+ model:"A franchise is a licence to trade using another firm's established name, brand and products. The franchisee benefits from a well-known brand that already attracts customers, so the risk of failure is lower — and the franchisor usually provides training and national advertising."}
+]},
+mock:[
+{type:"mcq",marks:1,q:"Scarcity exists because:",opts:["Some people are poor","Wants are unlimited but resources are limited","Governments tax businesses","Prices are too high"],ans:1,why:"The basic economic problem."},
+{type:"mcq",marks:1,q:"A tailor stitching shirts from cloth is adding value mainly by:",opts:["Buying cloth cheaply","Transforming materials into a product customers pay more for","Employing workers","Paying taxes"],ans:1,why:"Added value = selling price minus cost of bought-in materials."},
+{type:"mcq",marks:1,q:"Which business is in the tertiary sector?",opts:["A tea plantation","A textile mill","An insurance company","An oil refinery"],ans:2,why:"Insurance is a service."},
+{type:"mcq",marks:1,q:"Opportunity cost of building a new factory with the firm's savings is:",opts:["The cost of the factory","The interest and other uses of the money given up","The wages of new workers","The profit the factory will earn"],ans:1,why:"The next best alternative forgone."},
+{type:"mcq",marks:1,q:"Two clothing retailers merge. This is:",opts:["Backward vertical integration","Forward vertical integration","Horizontal integration","Conglomerate integration"],ans:2,why:"Same industry, same stage of production."},
+{type:"mcq",marks:1,q:"Which stakeholder group is most interested in job security?",opts:["Customers","Employees","Government","Suppliers"],ans:1,why:"Employees depend on the business for jobs and wages."},
+{type:"mcq",marks:1,q:"Unlimited liability applies to:",opts:["Shareholders of a PLC","Sole traders and ordinary partnerships","Private limited companies","Franchisors"],ans:1,why:"Unincorporated businesses: the owner and business are legally the same."},
+{type:"mcq",marks:1,q:"The number of employees is used to measure:",opts:["Business profit","Business size","Added value","Market share"],ans:1,why:"A standard measure of size (along with output/capital employed) — profit is not."},
+{type:"mcq",marks:1,q:"A business plan is mainly used to:",opts:["Guarantee success","Reduce risk and help obtain finance from lenders","Avoid paying tax","Recruit employees"],ans:1,why:"It forces planning ahead and convinces banks/investors to lend."},
+{type:"mcq",marks:1,q:"Shares of a private limited company:",opts:["Are sold on the stock exchange","Can be sold to the public freely","Are transferred privately with agreement of the other shareholders","Do not carry limited liability"],ans:2,why:"Ltd shares cannot be offered to the general public."},
+{type:"structured",marks:6,q:"Anita wants to open a coffee shop. She can start independently or buy a franchise of a famous coffee chain.\n(a) Define 'franchise'. [1]\n(b) Explain one advantage and one disadvantage to Anita of buying the franchise. [4]\n(c) State one reason a bank might prefer to lend to the franchise option. [1]",
+ points:[{pt:"(a) Licence to trade using the franchisor's brand/name/products (1 mark)",kw:["licence","license","brand","name","right to"]},{pt:"(b) Advantage identified: known brand, existing customers, lower failure risk, training/advertising provided (1 mark)",kw:["brand","known","customers","risk","training","advertis"]},{pt:"(b) Advantage explained/developed (1 mark)",kw:["because","so ","therefore","day one","attract"]},{pt:"(b) Disadvantage identified: fees/royalties, less independence, must follow franchisor rules (1 mark)",kw:["fee","royalt","independen","rules","control","strict"]},{pt:"(b) Disadvantage explained/developed (1 mark)",kw:["profit","cannot","restrict","decisions"]},{pt:"(c) Lower risk of failure / proven business model, so loan more likely repaid (1 mark)",kw:["risk","proven","repaid","safer","fail"]}],
+ model:"(a) A franchise is a licence to trade using an established firm's brand and products. (b) Advantage: the famous chain's brand brings customers from day one and the franchisor provides training and advertising, so Anita's risk of failure is much lower. Disadvantage: she must pay an initial fee plus royalties from revenue and follow the franchisor's menu and pricing rules, so she loses independence and keeps less profit. (c) Banks prefer lending to a proven business model with lower failure risk, making repayment more likely."},
+{type:"structured",marks:6,q:"XYZ Ltd is a family-owned private limited company making furniture. Sales are growing and the directors are considering converting to a public limited company.\nExplain two advantages and two disadvantages of converting to a PLC.",
+ points:[{pt:"Advantage 1: raise large capital by selling shares to the public (1 mark)",kw:["capital","raise","public","shares","stock exchange"]},{pt:"Development: finance expansion without loans/interest (1 mark)",kw:["expan","loan","interest","invest"]},{pt:"Advantage 2: higher status/public awareness / shareholders can sell shares easily (1 mark)",kw:["status","awareness","prestige","sell shares","liquidity"]},{pt:"Disadvantage 1: risk of takeover / family loses control (1 mark)",kw:["takeover","control","family","lose"]},{pt:"Disadvantage 2: must publish accounts / costly and complex to convert / pressure for short-term profit (1 mark)",kw:["publish","accounts","cost","legal","short-term","dividend"]},{pt:"Development of a disadvantage (1 mark)",kw:["competitors","expensive","pressure","because"]}],
+ model:"Converting lets XYZ sell shares to the public, raising large capital to expand without interest-bearing loans, and the higher public profile raises its status with customers and suppliers. However, anyone can buy the shares, so the family risks losing control through a takeover; and a PLC must publish detailed accounts (helpful to competitors) and meet costly legal requirements, while shareholders may pressure directors for short-term dividends."},
+{type:"structured",marks:6,q:"Explain three reasons why a business may want to grow larger.",
+ points:[{pt:"Reason 1: economies of scale → lower average costs (1 mark)",kw:["economies of scale","average cost","unit cost","bulk"]},{pt:"Development (1 mark)",kw:["discount","cheaper","spread","lower price"]},{pt:"Reason 2: larger market share → more market power/sales (1 mark)",kw:["market share","power","sales","dominat"]},{pt:"Development (1 mark)",kw:["influence price","competitors","brand"]},{pt:"Reason 3: higher profits / spread risk by diversifying / status for managers (1 mark)",kw:["profit","risk","diversif","status"]},{pt:"Development (1 mark)",kw:["new markets","products","salary","survive"]}],
+ model:"Growth brings economies of scale — bulk-buying discounts and spreading fixed costs cut average costs, allowing lower prices or higher margins. A bigger market share gives more power over pricing and strengthens the brand against competitors. Growth can also raise total profits and spread risk if the firm diversifies into new products or markets."},
+{type:"structured",marks:6,q:"Priya, a successful sole trader running two boutiques, is considering converting her business into a private limited company. Explain three factors she should consider before deciding.",
+ points:[{pt:"Limited liability gained — personal assets protected (1 mark)",kw:["limited liability","personal assets","protect"]},{pt:"Development: important as the business borrows more to grow (1 mark)",kw:["debt","borrow","risk","grow"]},{pt:"Ability to raise capital by selling shares to family/friends (1 mark)",kw:["capital","shares","invest","raise"]},{pt:"Legal costs and formalities of incorporation; accounts filed (1 mark)",kw:["legal","cost","formalit","accounts","paperwork","regist"]},{pt:"Possible loss of some control/profit shared with shareholders (1 mark)",kw:["control","share profit","dividend","other owners"]},{pt:"Application/judgement related to Priya's boutiques (1 mark)",kw:["priya","boutique","her ","expansion"]}],
+ model:"1) Limited liability: as a company, Priya's personal assets would be safe if the boutiques failed — increasingly important if she borrows to expand. 2) Finance: she could sell shares privately to raise expansion capital without loans. 3) Costs and control: incorporation involves legal formalities, filed accounts, and sharing profits (and some control) with new shareholders. Weighing protection and finance against cost and control earns full marks."},
+{type:"structured",marks:6,q:"'The public sector should run essential services like water and railways, not private businesses.' Do you agree? Justify your answer by considering both sides.",
+ points:[{pt:"For public sector: essential services kept affordable/available to all, not just profitable areas (1 mark)",kw:["affordable","everyone","essential","available","all"]},{pt:"For: social objectives (jobs, loss-making rural routes) protected (1 mark)",kw:["social","jobs","rural","loss-making","community"]},{pt:"Against: public sector can be inefficient — no profit motive/competition (1 mark)",kw:["inefficien","profit motive","competition","waste"]},{pt:"Against: private firms invest, innovate, improve service quality (1 mark)",kw:["invest","innovat","quality","efficien"]},{pt:"Balanced development of both sides (1 mark)",kw:["however","on the other hand","but","whereas"]},{pt:"Justified conclusion/judgement (1 mark)",kw:["conclusion","i agree","i disagree","overall","therefore","in my opinion"]}],
+ model:"Public ownership keeps essential services affordable and universal — a state railway can run loss-making rural routes for social benefit. However, without a profit motive or competition, state services can become inefficient and underfunded, while private firms often invest and innovate to win customers. Overall, a balanced answer might support public ownership (or regulated private ownership) of natural monopolies like water, provided efficiency targets are set — the judgement earns the final mark if clearly justified."}
+]};</script>
+<script id="bank-economics">
+BANK.economics = {
+name:"Economics", exam:"IGCSE 0455 · LT1 (Thu 20 Aug FN, 1h10m): Unit 1 Ch 1–4, Unit 2 Ch 6–8 · structured · 40 marks",
+mockTime:70,
+chapters:{
+"Unit 1 (Ch 1–4) — The Economic Problem":[
+{type:"structured",marks:2,q:"Define the 'economic problem'.",
+ points:[{pt:"Wants are unlimited (1 mark)",kw:["unlimited","infinite","wants"]},{pt:"Resources are finite/scarce, so choices must be made (1 mark)",kw:["finite","scarce","limited","choice"]}],
+ model:"The economic problem is that people's wants are unlimited but the resources available to satisfy them are finite — so scarcity forces individuals, firms and governments to make choices."},
+{type:"structured",marks:4,q:"State the four factors of production and the reward earned by each.",
+ points:[{pt:"Land — rent (1 mark)",kw:["land","rent"]},{pt:"Labour — wages (1 mark)",kw:["labour","labor","wage"]},{pt:"Capital — interest (1 mark)",kw:["capital","interest"]},{pt:"Enterprise — profit (1 mark)",kw:["enterprise","entrepreneur","profit"]}],
+ model:"Land (all natural resources) earns rent; labour (human effort) earns wages; capital (man-made aids to production) earns interest; enterprise (risk-taking and organising) earns profit."},
+{type:"mcq",marks:1,q:"Which is an example of capital as a factor of production?",opts:["A river used for fishing","A factory sewing machine","A shop assistant","The owner who takes the risks"],ans:1,why:"Capital = man-made goods used to produce other goods. The river is land; the assistant is labour; the owner is enterprise."},
+{type:"structured",marks:3,q:"A farmer can grow either rice or cotton on his land. He chooses rice. Using this example, explain the concept of opportunity cost.",
+ points:[{pt:"Opportunity cost = the next best alternative forgone (1 mark)",kw:["next best","alternative","forgone","foregone","given up"]},{pt:"Application: the cotton (income) he could have grown is given up (1 mark)",kw:["cotton"]},{pt:"Development: applies because resources (his land) are scarce and cannot produce both at once (1 mark)",kw:["scarce","limited","cannot","both","choice"]}],
+ model:"Opportunity cost is the next best alternative given up when a choice is made. The farmer's land is scarce and cannot grow both crops, so by choosing rice, his opportunity cost is the cotton crop (and its income) he could have produced instead."},
+{type:"mcq",marks:1,q:"A point INSIDE a production possibility curve shows:",opts:["Maximum efficiency","Unemployed or inefficiently used resources","Economic growth","An unattainable output"],ans:1,why:"Inside = resources idle/inefficient; on the curve = efficient; outside = currently unattainable."},
+{type:"structured",marks:4,q:"Draw or describe a PPC for an economy producing consumer goods and capital goods. Explain (a) a movement along the curve and (b) an outward shift of the curve.",
+ points:[{pt:"PPC: downward-sloping curve showing maximum combinations of the two goods (1 mark)",kw:["maximum","combinations","boundary","downward","frontier"]},{pt:"(a) Movement along = reallocating resources from one good to the other (1 mark)",kw:["realloc","more of one","less of the other","along"]},{pt:"(a) This involves an opportunity cost (1 mark)",kw:["opportunity cost"]},{pt:"(b) Outward shift = economic growth from more/better resources or technology (1 mark)",kw:["growth","more resources","technology","investment","productivity"]}],
+ model:"The PPC slopes down from capital goods (y-axis) to consumer goods (x-axis), showing the maximum combinations producible with existing resources. (a) Moving along the curve means shifting resources — producing more consumer goods means giving up some capital goods (opportunity cost). (b) The curve shifts outward when the quantity or quality of resources rises — e.g. new technology or investment — allowing more of both goods: economic growth."},
+{type:"short",marks:1,q:"State the term for the ability of a factor of production to be moved between different uses.",ans:["mobility","factor mobility","mobile"],why:"Factor mobility — geographical (place to place) or occupational (job to job)."},
+{type:"structured",marks:3,q:"Explain why an economics graduate deciding to do a master's degree faces an opportunity cost, identifying two things given up.",
+ points:[{pt:"Concept: next best alternative forgone (1 mark)",kw:["forgone","foregone","given up","next best","alternative"]},{pt:"Earnings from a full-time job given up (1 mark)",kw:["earnings","salary","wage","income","job"]},{pt:"Money spent on fees / leisure time given up (1 mark)",kw:["fees","tuition","cost","leisure","time"]}],
+ model:"Choosing the master's means giving up the next best alternative: the salary they would have earned in a full-time job for those years, and the fees paid (plus leisure time) could have been used for other purchases or savings."}
+],
+"Unit 2 (Ch 6–8) — Markets, Demand & Supply":[
+{type:"structured",marks:2,q:"Define 'demand'.",
+ points:[{pt:"Willingness AND ability to buy a product (1 mark)",kw:["willing","ability","able"]},{pt:"At a given price, in a given time period (1 mark)",kw:["price","time period","given"]}],
+ model:"Demand is the willingness and ability of consumers to buy a product at each given price over a period of time."},
+{type:"mcq",marks:1,q:"The demand curve slopes downward because:",opts:["Producers cut output when prices fall","As price falls, more is demanded","Income always rises over time","Supply increases when price rises"],ans:1,why:"Law of demand: price and quantity demanded are inversely related."},
+{type:"structured",marks:2,q:"Distinguish between a movement along the demand curve and a shift of the demand curve.",
+ points:[{pt:"Movement along: caused ONLY by a change in the product's own price (extension/contraction) (1 mark)",kw:["own price","price of the product","extension","contraction","along"]},{pt:"Shift: caused by non-price factors (income, tastes, price of substitutes/complements, population…) (1 mark)",kw:["income","taste","substitute","complement","population","non-price","advertis"]}],
+ model:"A movement along the curve (extension or contraction) happens only when the good's own price changes. A shift of the whole curve happens when a non-price determinant changes — e.g. income, tastes, advertising, population, or prices of substitutes and complements."},
+{type:"structured",marks:4,q:"For each event, state whether the demand curve for coffee shifts right, shifts left, or does not shift:\n(a) The price of tea (a substitute) rises.\n(b) A health report links coffee to illness.\n(c) The price of coffee falls.\n(d) Consumer incomes rise.",
+ points:[{pt:"(a) Shifts right (1 mark)",kw:["(a) right","a) right","a right","a - right","a: right"]},{pt:"(b) Shifts left (1 mark)",kw:["(b) left","b) left","b left","b - left","b: left"]},{pt:"(c) No shift — movement along the curve (extension) (1 mark)",kw:["no shift","does not shift","movement","along","extension"]},{pt:"(d) Shifts right (for a normal good) (1 mark)",kw:["(d) right","d) right","d right","d - right","d: right"]}],
+ model:"(a) Right — tea is dearer, so buyers switch to coffee. (b) Left — tastes turn against coffee. (c) No shift — a change in coffee's own price causes a movement along the curve. (d) Right — coffee is a normal good, so higher incomes raise demand."},
+{type:"structured",marks:2,q:"Define 'supply'.",
+ points:[{pt:"Willingness and ability of producers to sell/offer a product (1 mark)",kw:["producers","sell","offer","willing"]},{pt:"At each given price over a time period (1 mark)",kw:["price","time"]}],
+ model:"Supply is the willingness and ability of producers to offer a product for sale at each given price over a period of time."},
+{type:"structured",marks:3,q:"Explain two factors that could shift the supply curve of wheat to the right.",
+ points:[{pt:"Factor 1: good weather/harvest, improved technology, lower input costs (1 mark)",kw:["weather","technology","costs","fertiliser","fertilizer","harvest","machinery"]},{pt:"Factor 2: subsidy from government / more producers / fall in price of alternative crop (1 mark)",kw:["subsid","more producers","alternative crop","tax cut"]},{pt:"Development: at every price, more can/will be offered for sale (1 mark)",kw:["every price","more offered","more supplied","each price"]}],
+ model:"Better technology or good weather raises output from the same land, and a government subsidy cuts producers' costs — in both cases farmers can profitably offer more wheat for sale at every price, shifting supply right."},
+{type:"mcq",marks:1,q:"A market is best described as:",opts:["A physical building only","Any arrangement bringing buyers and sellers together to trade","A place where only goods (not services) are sold","A government department setting prices"],ans:1,why:"Markets can be physical or online — anywhere buyers and sellers exchange."},
+{type:"structured",marks:3,q:"Explain how the price mechanism allocates scarce resources in a market economy.",
+ points:[{pt:"Prices act as signals of shortage/surplus (1 mark)",kw:["signal","shortage","surplus","information"]},{pt:"Prices give incentives — higher price attracts producers/resources into a market (1 mark)",kw:["incentive","profit","attract","producers"]},{pt:"Rationing: rising prices ration goods to those willing and able to pay (1 mark)",kw:["ration","willing and able","allocat","who gets"]}],
+ model:"When consumers want more of a good, its price rises. The higher price signals the shortage, gives producers an incentive (more profit) to shift resources into making it, and rations the limited supply to buyers most willing and able to pay — so resources follow consumer demand without government direction."},
+{type:"num",marks:2,q:"At a price of ₹20, quantity demanded is 100 units and quantity supplied is 60 units. Calculate the size of the shortage.",ans:["40","40 units"],why:"Shortage = Qd − Qs = 100 − 60 = 40 units. Price would be bid upward toward equilibrium."}
+]},
+mock:[
+{type:"structured",marks:2,q:"Define 'scarcity'. [2]",
+ points:[{pt:"Resources are limited/finite (1 mark)",kw:["limited","finite","insufficient"]},{pt:"…relative to unlimited wants (1 mark)",kw:["unlimited","wants"]}],
+ model:"Scarcity is the situation where finite resources are insufficient to satisfy people's unlimited wants."},
+{type:"structured",marks:2,q:"State two characteristics of enterprise as a factor of production. [2]",
+ points:[{pt:"Bears risk of the business failing (1 mark)",kw:["risk"]},{pt:"Organises/combines the other factors of production; rewarded with profit (1 mark)",kw:["organis","organiz","combines","decision","profit"]}],
+ model:"The entrepreneur bears the risks of production (may lose invested money) and organises the other three factors — land, labour and capital — earning profit as reward."},
+{type:"structured",marks:4,q:"A government decides to build a new hospital instead of a new airport on the same site. Explain the opportunity cost of this decision (a) to the government and (b) to a business traveller. [4]",
+ points:[{pt:"Definition/idea of next best alternative forgone (1 mark)",kw:["next best","forgone","foregone","given up","alternative"]},{pt:"(a) Government gives up the airport and its benefits (1 mark)",kw:["airport"]},{pt:"(a) Development: e.g. trade, tourism, jobs the airport would bring (1 mark)",kw:["trade","tourism","jobs","revenue","travel"]},{pt:"(b) Traveller gives up shorter journeys/convenience; time lost is a cost (1 mark)",kw:["time","journey","convenien","travel further","longer"]}],
+ model:"Opportunity cost is the next best alternative forgone. (a) The government gives up the airport — and the trade, tourism and jobs it might have generated. (b) The business traveller loses the convenience of flying locally and must spend extra time and money travelling to a distant airport."},
+{type:"structured",marks:4,q:"Using a production possibility curve diagram (describe it), explain the effect on an economy's PPC of (a) a war destroying factories, and (b) discovery of new oil reserves. [4]",
+ points:[{pt:"PPC shows maximum output combinations with given resources (1 mark)",kw:["maximum","combinations","frontier","boundary"]},{pt:"(a) Capital destroyed → fewer resources (1 mark)",kw:["destroy","fewer","less capital","lost"]},{pt:"(a) PPC shifts inward/left (1 mark)",kw:["inward","left","shrink","shifts in"]},{pt:"(b) More natural resources → PPC shifts outward (growth) (1 mark)",kw:["outward","right","growth","expand"]}],
+ model:"The PPC shows the maximum combinations of two goods the economy can produce with its resources. (a) War destroys capital, reducing productive capacity — the whole curve shifts inward. (b) New oil reserves add natural resources, shifting the PPC outward: the economy can produce more of both goods."},
+{type:"structured",marks:4,q:"Explain, with one example each, the difference between a substitute and a complement, and how a rise in the price of one good affects demand for its substitute and for its complement. [4]",
+ points:[{pt:"Substitute: alternative goods, e.g. tea and coffee (1 mark)",kw:["substitute","alternative","tea","coke","pepsi","instead"]},{pt:"Complement: goods used together, e.g. cars and petrol (1 mark)",kw:["complement","together","petrol","printer","ink","bread butter"]},{pt:"Price rise → demand for substitute rises (shifts right) (1 mark)",kw:["substitute rises","switch","right","increase"]},{pt:"Price rise → demand for complement falls (shifts left) (1 mark)",kw:["complement falls","left","decrease","less"]}],
+ model:"Substitutes are alternatives (tea/coffee); complements are consumed together (cars/petrol). If coffee's price rises, buyers switch to tea, so demand for tea shifts right. If car prices rise, fewer cars are bought, so demand for petrol shifts left."},
+{type:"structured",marks:6,q:"With the aid of a demand and supply diagram (describe it), analyse how the market for umbrellas is affected by an unusually long rainy season. [6]",
+ points:[{pt:"Initial equilibrium where demand = supply (1 mark)",kw:["equilibrium","intersect","d=s","demand = supply","clears"]},{pt:"Rain → tastes/needs change: demand for umbrellas rises (1 mark)",kw:["demand rises","demand increases","more demand"]},{pt:"Demand curve shifts right (1 mark)",kw:["right","shifts"]},{pt:"Shortage at the old price (1 mark)",kw:["shortage","excess demand"]},{pt:"Price bid upward; extension of supply (1 mark)",kw:["price rises","bid up","extension","higher price"]},{pt:"New equilibrium: higher price AND higher quantity traded (1 mark)",kw:["new equilibrium","higher quantity","both","price and quantity"]}],
+ model:"Initially the market clears where demand meets supply at price P and quantity Q. The long rains increase consumers' need for umbrellas, shifting the demand curve right. At the old price a shortage appears, so sellers raise prices; the higher price causes an extension along the supply curve as producers offer more. The new equilibrium has both a higher price and a larger quantity bought and sold."},
+{type:"structured",marks:6,q:"Analyse how the price mechanism would respond, in a market economy, to a permanent fall in the cost of producing solar panels. [6]",
+ points:[{pt:"Lower costs → supply increases/shifts right (1 mark)",kw:["supply","right","increase"]},{pt:"Surplus at the original price (1 mark)",kw:["surplus","excess supply"]},{pt:"Price falls to a new equilibrium (1 mark)",kw:["price falls","lower price"]},{pt:"Extension of demand — more consumers willing/able to buy (1 mark)",kw:["extension of demand","more bought","quantity demanded rises","more consumers"]},{pt:"Signals/incentives: resources drawn into solar industry; profits guide reallocation (1 mark)",kw:["signal","incentive","resources","realloc","profit"]},{pt:"Possible knock-on: demand for substitutes (e.g. fossil-fuel energy) falls (1 mark)",kw:["substitute","fossil","electricity","knock-on","related market"]}],
+ model:"Cheaper production shifts the supply curve right; at the old price there is a surplus, so price falls. As price falls, demand extends — more households can afford panels — until a new equilibrium at lower price and higher quantity. The rising sales and profits signal producers to move more resources into the solar industry, while demand for substitute energy sources falls, reallocating resources across markets — the price mechanism at work."},
+{type:"structured",marks:6,q:"Discuss whether a country benefits from allocating more resources to capital goods rather than consumer goods. [6]",
+ points:[{pt:"For: capital goods raise future productive capacity (1 mark)",kw:["future","capacity","growth","productivity"]},{pt:"For: PPC shifts outward — higher living standards later (1 mark)",kw:["ppc","outward","living standards","long run"]},{pt:"Against: fewer consumer goods now — current living standards fall (1 mark)",kw:["fewer consumer","current","today","sacrifice","short run"]},{pt:"Against: opportunity cost hits the poor hardest / benefits take years (1 mark)",kw:["poor","opportunity cost","years","time lag","hardship"]},{pt:"Balance: depends on income level of country, extent of shift, quality of investment (1 mark)",kw:["depends","extent","quality","income level","how many"]},{pt:"Justified conclusion (1 mark)",kw:["conclusion","overall","therefore","on balance","i think","in my view"]}],
+ model:"Producing more capital goods (machines, factories, infrastructure) raises future productive capacity, shifting the PPC outward and enabling higher living standards later. But the opportunity cost is fewer consumer goods today, lowering current living standards — a serious sacrifice in a poor country where people lack basics. The judgement depends on how large the shift is, how effective the investment proves, and the country's current income level; a balanced conclusion — e.g. moderate reallocation benefits most countries in the long run — earns the final mark."},
+{type:"structured",marks:6,q:"Discuss whether the government or the market should decide how many doctors a country trains. [6]",
+ points:[{pt:"Market view: wages signal shortage — high doctor salaries attract students (1 mark)",kw:["wage","salary","signal","attract"]},{pt:"Market limitation: training takes years (time lag) — supply responds slowly (1 mark)",kw:["years","time lag","slow","long"]},{pt:"Government view: healthcare is essential; planning ensures enough doctors for all regions (1 mark)",kw:["essential","planning","ensure","regions","rural","public"]},{pt:"Government limitation: may misjudge numbers / cost to taxpayers (1 mark)",kw:["misjudge","wrong","taxpayer","cost","inefficien"]},{pt:"Balanced consideration of both sides (1 mark)",kw:["however","on the other hand","whereas","but "]},{pt:"Justified conclusion, e.g. mixed approach (1 mark)",kw:["conclusion","overall","mixed","both","therefore"]}],
+ model:"Left to the market, a shortage of doctors raises their wages, attracting more students — but training takes up to a decade, so supply responds far too slowly, and poor or rural patients may be priced out. Government planning can fund medical seats and direct doctors where needed, though it may misjudge future demand and burdens taxpayers. A justified conclusion — e.g. a mixed approach where government plans and funds training while salaries still provide incentives — earns the final mark."}
+]};
+</script>
+<script id="bank-cs">BANK.cs = {
+name:"Computer Science", exam:"IGCSE 0478 · LT1 (Thu 20 Aug AN): Ch 7 Algorithm Design and Problem Solving · structured · 40 marks",
+mockTime:60,
+chapters:{
+"Ch 7 — Algorithm Design & Problem Solving":[
+{type:"mcq",marks:1,q:"Which stage of the program development life cycle comes immediately after design?",opts:["Analysis","Coding","Testing","Maintenance"],ans:1,why:"The cycle is: analysis → design → coding → testing (→ maintenance)."},
+{type:"short",marks:1,q:"State the term for breaking a complex problem down into smaller sub-problems.",ans:["decomposition","decompose"],why:"Decomposition — a key computational thinking skill."},
+{type:"mcq",marks:1,q:"In a flowchart, which shape is used for a decision?",opts:["Rectangle","Parallelogram","Diamond (rhombus)","Oval"],ans:2,why:"Diamond = decision; rectangle = process; parallelogram = input/output; oval = start/stop."},
+{type:"mcq",marks:1,q:"Which flowchart symbol is used for input and output?",opts:["Diamond","Parallelogram","Rectangle","Circle"],ans:1,why:"Parallelogram is used for INPUT and OUTPUT."},
+{type:"short",marks:2,q:"A validation check ensures only whole numbers between 1 and 100 are accepted. Name this type of check.",ans:["range check","range"],why:"A range check tests that data lies within set limits. (Type check would test it is a whole number.)"},
+{type:"structured",marks:3,q:"Explain the difference between validation and verification, giving one example of each.",
+ points:[{pt:"Validation: computer checks data is sensible/acceptable/within rules (1 mark)",kw:["sensible","acceptable","reasonable","rules","valid"]},{pt:"Verification: checks data has been entered/copied accurately without change (1 mark)",kw:["accurately","copied","entered correctly","matches","same"]},{pt:"Examples: range/type/length/format/presence check; double entry or visual check (1 mark)",kw:["range check","type check","length check","format check","presence check","double entry","visual check"]}],
+ model:"Validation is an automatic check by the computer that data is sensible and follows rules, e.g. a range check that age is between 1 and 120. Verification checks that data has been transferred accurately, e.g. double entry — typing a password twice."},
+{type:"structured",marks:4,q:"Write pseudocode that inputs 10 numbers and outputs their total and average.",
+ points:[{pt:"Total initialised to 0 before the loop (1 mark)",kw:["total ← 0","total <- 0","total = 0","total←0"]},{pt:"Loop that repeats exactly 10 times, e.g. FOR Count ← 1 TO 10 (1 mark)",kw:["for","to 10","next","repeat","until"]},{pt:"Input inside loop and total updated: Total ← Total + Num (1 mark)",kw:["total + ","total+","input"]},{pt:"Average = Total / 10 and both values output after the loop (1 mark)",kw:["/10","/ 10","output","print"]}],
+ model:"Total ← 0\nFOR Count ← 1 TO 10\n   INPUT Num\n   Total ← Total + Num\nNEXT Count\nAverage ← Total / 10\nOUTPUT Total, Average"},
+{type:"num",marks:2,q:"Trace this algorithm and state the output:\nX ← 3\nY ← 5\nX ← X + Y\nY ← X − Y\nOUTPUT X, Y\n\nWhat is the value of X in the output?",ans:["8"],why:"X = 3 + 5 = 8, then Y = 8 − 5 = 3. Output is 8, 3."},
+{type:"mcq",marks:1,q:"What is the purpose of a trace table?",opts:["To store test data permanently","To record variable values step by step and find logic errors (dry run)","To convert pseudocode into a program","To measure how fast a program runs"],ans:1,why:"A trace table records each variable's value as the algorithm is dry-run, to locate logic errors."},
+{type:"structured",marks:3,q:"State three types of test data, and give an example of each for a program accepting marks from 0 to 100.",
+ points:[{pt:"Normal data — accepted, e.g. 50 (1 mark)",kw:["normal"]},{pt:"Extreme/boundary data — accepted, on the limits, e.g. 0 or 100 (1 mark)",kw:["extreme","boundary"]},{pt:"Abnormal/erroneous data — rejected, e.g. −5, 150 or \"abc\" (1 mark)",kw:["abnormal","erroneous","rejected","invalid"]}],
+ model:"Normal: 50 (valid, typical). Extreme/boundary: 0 and 100 (valid, at the limits). Abnormal: −5, 101 or \"ten\" (should be rejected)."},
+{type:"short",marks:2,q:"An algorithm must find the largest of a set of input numbers. Which variable must be set up before the loop, and what is it usually initialised to?",ans:["maximum","max","highest","largest"],why:"A variable (e.g. Max) initialised to a very small value (or the first input). Each new input is compared: IF Num > Max THEN Max ← Num."},
+{type:"mcq",marks:1,q:"A library routine is:",opts:["A program written by the user for one task","Pre-written, pre-tested code that can be used in other programs","A type of syntax error","A loop that never ends"],ans:1,why:"Library routines are ready-made, already-tested subroutines — they save development time."}
+]},
+mock:[
+{type:"mcq",marks:1,q:"The correct order of the program development life cycle is:",opts:["Design → Analysis → Coding → Testing","Analysis → Design → Coding → Testing","Coding → Design → Testing → Analysis","Analysis → Coding → Design → Testing"],ans:1,why:"Analysis (what is needed) → Design (how) → Coding → Testing."},
+{type:"short",marks:1,q:"State the computational thinking skill of removing unnecessary detail from a problem.",ans:["abstraction"],why:"Abstraction keeps only the essential details."},
+{type:"mcq",marks:1,q:"In a flowchart, a rectangle represents:",opts:["A decision","An input or output","A process (e.g. a calculation)","The start of the algorithm"],ans:2,why:"Rectangle = process."},
+{type:"structured",marks:4,q:"A program asks the user to enter a password. Describe how a length check and a double entry check could be used, and state which is validation and which is verification.",
+ points:[{pt:"Length check: password must have at least/exactly N characters (1 mark)",kw:["characters","length","at least","minimum"]},{pt:"Length check is validation (1 mark)",kw:["length check is validation","validation"]},{pt:"Double entry: password typed twice and the two entries compared (1 mark)",kw:["twice","two","re-enter","reenter","compare"]},{pt:"Double entry is verification (1 mark)",kw:["verification"]}],
+ model:"A length check (validation) automatically rejects passwords shorter than, say, 8 characters. A double entry check (verification) asks the user to type the password twice and compares the two entries to catch typing mistakes."},
+{type:"num",marks:3,q:"Dry-run this algorithm with inputs 4, 7, 2:\nTotal ← 0\nFOR Count ← 1 TO 3\n   INPUT Num\n   IF Num > 5 THEN Total ← Total + Num\nNEXT Count\nOUTPUT Total\n\nWhat is the output?",ans:["7"],why:"Only 7 is greater than 5, so Total = 7. (4 and 2 are skipped.)"},
+{type:"structured",marks:5,q:"Write pseudocode that inputs numbers until −1 is entered, then outputs how many of the numbers were greater than 50. (The −1 must not be counted.)",
+ points:[{pt:"Counter initialised to 0 (1 mark)",kw:["count ← 0","count <- 0","count = 0","counter"]},{pt:"Correct loop with sentinel/terminator −1, e.g. WHILE Num <> −1 or REPEAT…UNTIL Num = −1 (1 mark)",kw:["while","until","-1","−1"]},{pt:"Input positioned so −1 is not processed (1 mark)",kw:["input"]},{pt:"IF Num > 50 THEN Count ← Count + 1 (1 mark)",kw:["> 50",">50","count + 1","count+1"]},{pt:"Count output after the loop ends (1 mark)",kw:["output","print"]}],
+ model:"Count ← 0\nINPUT Num\nWHILE Num <> −1 DO\n   IF Num > 50 THEN Count ← Count + 1\n   INPUT Num\nENDWHILE\nOUTPUT Count"},
+{type:"structured",marks:4,q:"An algorithm accepts exam marks from 0 to 100. Give four items of test data — one normal, two boundary and one abnormal — and state the expected outcome for each.",
+ points:[{pt:"Normal, e.g. 55 — accepted (1 mark)",kw:["normal"]},{pt:"Boundary 0 — accepted (1 mark)",kw:["0"]},{pt:"Boundary 100 — accepted (1 mark)",kw:["100"]},{pt:"Abnormal, e.g. −4 / 150 / \"abc\" — rejected with error message (1 mark)",kw:["abnormal","rejected","error","erroneous"]}],
+ model:"Normal: 55 → accepted. Boundary: 0 → accepted; 100 → accepted. Abnormal: 150 (or −4, \"abc\") → rejected and an error message shown."},
+{type:"num",marks:3,q:"Trace this algorithm and state the final value of B:\nA ← 2\nB ← 1\nWHILE A < 10 DO\n   B ← B × A\n   A ← A + 3\nENDWHILE",ans:["80"],why:"Pass 1: B = 1×2 = 2, A = 5. Pass 2: B = 2×5 = 10, A = 8. Pass 3: B = 10×8 = 80, A = 11 → loop stops."},
+{type:"structured",marks:4,q:"Draw (describe in words) the flowchart for an algorithm that inputs a temperature and outputs \"HOT\" if it is above 30, otherwise \"OK\". Name each symbol you would use in order.",
+ points:[{pt:"Start terminator (oval) (1 mark)",kw:["oval","terminator","start"]},{pt:"Input temperature in a parallelogram (1 mark)",kw:["parallelogram","input"]},{pt:"Decision diamond: temperature > 30? with Yes/No branches (1 mark)",kw:["diamond","decision","> 30",">30"]},{pt:"Output HOT / OK in parallelograms, then Stop terminator (1 mark)",kw:["output","stop","hot"]}],
+ model:"Oval (Start) → Parallelogram (INPUT Temp) → Diamond (Temp > 30?) — Yes branch → Parallelogram (OUTPUT \"HOT\"); No branch → Parallelogram (OUTPUT \"OK\") → both join → Oval (Stop)."},
+{type:"structured",marks:5,q:"Write pseudocode to input 20 students' marks and output the highest mark and the number of students who scored 40 or more.",
+ points:[{pt:"Max initialised (to 0 or first mark) and Count initialised to 0 (1 mark)",kw:["max ← 0","max <- 0","max = 0","highest"]},{pt:"FOR loop running exactly 20 times (1 mark)",kw:["for","to 20","1 to 20"]},{pt:"IF Mark > Max THEN Max ← Mark (1 mark)",kw:["> max",">max","max ← mark","max = mark","max <- mark"]},{pt:"IF Mark >= 40 THEN Count ← Count + 1 (1 mark)",kw:[">= 40",">=40","≥ 40","≥40"]},{pt:"Max and Count output after the loop (1 mark)",kw:["output","print"]}],
+ model:"Max ← 0\nCount ← 0\nFOR Student ← 1 TO 20\n   INPUT Mark\n   IF Mark > Max THEN Max ← Mark\n   IF Mark >= 40 THEN Count ← Count + 1\nNEXT Student\nOUTPUT Max, Count"},
+{type:"structured",marks:4,q:"State the four stages of the program development life cycle and describe what happens at each stage.",
+ points:[{pt:"Analysis — requirements identified, problem decomposed (1 mark)",kw:["analysis","requirement","decompos"]},{pt:"Design — algorithms planned: flowcharts/pseudocode/structure diagrams (1 mark)",kw:["design","flowchart","pseudocode","structure"]},{pt:"Coding — program written in a language; iterative testing while writing (1 mark)",kw:["coding","written","language","program"]},{pt:"Testing — run with test data to find and fix errors (1 mark)",kw:["testing","test data","errors","debug"]}],
+ model:"Analysis: define the requirements and break the problem into sub-problems. Design: plan the solution using flowcharts, pseudocode and structure diagrams. Coding: write the program in a chosen language, testing modules as they are written. Testing: run the finished program with normal, boundary and abnormal test data to find and correct errors."},
+{type:"mcq",marks:1,q:"Which of these is an advantage of using sub-routines (procedures/functions) in a program?",opts:["The program always runs faster","Code is written once and reused, making the program shorter and easier to debug","No testing is needed","Variables are no longer required"],ans:1,why:"Sub-routines avoid repeating code and make programs easier to maintain and debug."},
+{type:"structured",marks:4,q:"A supermarket program inputs the prices of items until 0 is entered, then applies a 10% discount if the total is more than ₹2000 and outputs the final amount. Identify TWO processes, ONE input and ONE output in this problem (purpose of each).",
+ points:[{pt:"Input: item price(s), 0 to finish (1 mark)",kw:["price","input"]},{pt:"Process 1: totalling — adding each price to Total (1 mark)",kw:["total","add","sum"]},{pt:"Process 2: checking Total > 2000 and applying 10% discount (1 mark)",kw:["discount","10%","2000"]},{pt:"Output: final amount payable (1 mark)",kw:["output","final","amount"]}],
+ model:"Input: each item price (0 ends entry). Processes: (1) totalling the prices; (2) testing whether Total > ₹2000 and if so computing Total × 0.9. Output: the final amount to pay."}
+]};</script>
+<script id="bank-english">(function(){
+var P1 = "The Rooftop Garden\n\nWhen Meera first suggested turning the bare concrete roof of our apartment block into a garden, the residents' association laughed. The roof was a wasteland of cracked cement, rusting water tanks and television cables. Nothing, they said, would ever grow up there.\n\nMeera was not discouraged. She began alone, carrying up sacks of soil on Sunday mornings, her sandals slapping on the stairs. She filled old paint buckets, cracked bathtubs and even a broken suitcase with compost. Within three months, the first tomatoes ripened — small, misshapen, and, according to Meera, the sweetest the building had ever tasted.\n\nSlowly, curiosity defeated doubt. The retired bank manager from the fourth floor appeared one evening with a packet of chilli seeds. Two schoolchildren begged to be allowed to water the plants. By the end of the year, the roof produced spinach, beans, mint and marigolds, and the residents' association — the same one that had laughed — voted to fund a proper drip-irrigation system.\n\nThe garden changed more than the roof. Neighbours who had never exchanged more than a nod now argued cheerfully about the best way to stake beans. The building's electricity bills fell, because the layer of plants kept the top-floor flats noticeably cooler in summer. And every evening, as the sun sank behind the water tanks, a small crowd gathered among the buckets and bathtubs, drinking tea in a place that had once been only for pigeons.";
+BANK.english = {
+name:"English", exam:"First Language English 0500 · LT1 (Mon 24 Aug AN): Paper 1 — Comprehension (20), Summary (15), Writer's attitude (5)",
+mockTime:60,
+chapters:{
+"Comprehension Skills":[
+{type:"short",marks:1,passage:P1,q:"Where did Meera create the garden?",ans:["roof","on the roof","rooftop","the roof of the apartment block","apartment roof"],why:"On the bare concrete roof of the apartment block. (1 mark for the correct detail.)"},
+{type:"structured",marks:2,passage:P1,q:"Using your own words, explain why the residents' association laughed at Meera's idea. (Paragraph 1)",
+ points:[{pt:"The roof was in a terrible/ruined state (own words for 'wasteland of cracked cement, rusting tanks') (1 mark)",kw:["ruined","terrible","damaged","poor condition","broken","neglected","bad state"]},{pt:"They believed plants could not survive/grow there (1 mark)",kw:["could not grow","wouldn't grow","not survive","impossible","nothing would"]}],
+ model:"They thought the roof was in such a ruined, neglected state — covered in broken concrete and rusty tanks — that it would be impossible for any plants to survive there."},
+{type:"structured",marks:2,passage:P1,q:"Give two examples of unusual containers Meera used for planting. (Paragraph 2)",
+ points:[{pt:"Old paint buckets or cracked bathtubs (1 mark)",kw:["paint bucket","bathtub"]},{pt:"A broken suitcase (1 mark)",kw:["suitcase"]}],
+ model:"Old paint buckets, cracked bathtubs, and a broken suitcase (any two)."},
+{type:"structured",marks:3,passage:P1,q:"Explain what the phrase 'curiosity defeated doubt' (Paragraph 3) tells us about the residents' changing behaviour.",
+ points:[{pt:"At first residents doubted/mocked the project (1 mark)",kw:["doubt","laughed","mocked","sceptic","skeptic","didn't believe"]},{pt:"Their interest/inquisitiveness grew as the garden succeeded (1 mark)",kw:["curious","interest","inquisitive","wanted to see","drawn"]},{pt:"They began joining in — bringing seeds, watering, funding irrigation (1 mark)",kw:["join","seeds","water","help","fund","irrigation","took part"]}],
+ model:"It shows the residents' scepticism was gradually overcome by interest: people who had mocked the idea became so curious about the growing garden that they began taking part — donating seeds, watering plants and eventually funding equipment."},
+{type:"structured",marks:3,passage:P1,q:"Identify three benefits the garden brought to the building. (Paragraph 4)",
+ points:[{pt:"Brought neighbours together / created community spirit (1 mark)",kw:["together","community","neighbours","friend","social","talk"]},{pt:"Lower electricity bills / flats kept cooler (1 mark)",kw:["electricity","bills","cooler","cool"]},{pt:"Pleasant shared space for evenings / fresh vegetables (1 mark)",kw:["evening","tea","gather","space","vegetables","spinach","produce"]}],
+ model:"It united neighbours who had barely spoken; it cut electricity bills by keeping the top flats cooler; and it gave residents a pleasant gathering place (as well as fresh produce)."},
+{type:"structured",marks:2,passage:P1,q:"What does the detail 'a place that had once been only for pigeons' suggest about the roof's transformation?",
+ points:[{pt:"Before: abandoned/unused/lifeless, visited by no one (1 mark)",kw:["abandoned","unused","empty","no one","neglect","lifeless","deserted"]},{pt:"Now: a lively, social, human space (contrast emphasises the change) (1 mark)",kw:["lively","social","people","gather","contrast","transform","alive"]}],
+ model:"It emphasises the contrast: the roof was once so deserted that only birds went there, but it has become a living social space filled with people — showing how complete the transformation is."}
+],
+"Summary & Writer's Attitude":[
+{type:"structured",marks:5,passage:P1,q:"Assess the writer's attitude towards Meera and her project. Support your answer with evidence from the text. (5 marks)",
+ points:[{pt:"Attitude identified: admiring/approving/warm (1 mark)",kw:["admir","approv","positive","warm","respect","support"]},{pt:"Evidence: 'Meera was not discouraged' — persistence presented approvingly (1 mark)",kw:["not discouraged","persist","determin"]},{pt:"Evidence: affectionate detail ('sweetest the building had ever tasted', 'sandals slapping') (1 mark)",kw:["sweetest","sandals","detail","affection"]},{pt:"Gentle irony at the association's expense ('the same one that had laughed') shows writer sides with Meera (1 mark)",kw:["laughed","irony","ironic","association","mock"]},{pt:"Celebratory ending (community, tea, sunset) reinforces approval (1 mark)",kw:["ending","tea","sunset","celebrat","community","final"]}],
+ model:"The writer clearly admires Meera. Her persistence is highlighted approvingly ('Meera was not discouraged') and affectionate details like the tomatoes being 'the sweetest the building had ever tasted' invite the reader to share the writer's warmth. There is gentle irony towards the doubters — the association that funds the irrigation is pointedly 'the same one that had laughed' — and the celebratory final image of neighbours drinking tea at sunset confirms the writer's approval of what Meera achieved."},
+{type:"structured",marks:5,passage:P1,q:"Summarise, in your own words, how the garden was created and the effects it had on the building and its residents. Aim for about 80 words, in one paragraph. (Content 3 + Own words/concision 2)",
+ points:[{pt:"Creation: Meera worked alone at first, using improvised containers/carried soil (1 mark)",kw:["alone","herself","containers","buckets","soil","improvis"]},{pt:"Growth: others gradually joined (seeds, watering, funding) (1 mark)",kw:["joined","help","seeds","water","fund","residents"]},{pt:"Effects: community spirit, cooler flats/lower bills, produce, shared space (1 mark)",kw:["community","cooler","bills","vegetables","together","space"]},{pt:"Mostly own words, not copied phrases (1 mark)",kw:[]},{pt:"Concise, single paragraph, focused (≈80 words) (1 mark)",kw:[]}],
+ model:"Ignoring the residents' mockery, Meera single-handedly began planting vegetables on the block's derelict roof, hauling soil upstairs and sowing seeds in scrap containers. Her early success drew neighbours in: they contributed seeds, helped with watering, and the association eventually paid for irrigation. The finished garden supplied fresh vegetables, cooled the top flats and cut electricity costs, and — most importantly — turned strangers into friends who now gather there every evening. (About 70–85 words earns the concision mark.)"},
+{type:"structured",marks:3,q:"A summary should be in your own words. Rewrite this sentence in your own words without changing the meaning: 'The roof was a wasteland of cracked cement, rusting water tanks and television cables.'",
+ points:[{pt:"Meaning preserved: roof was derelict/neglected/damaged (1 mark)",kw:["derelict","neglected","abandoned","damaged","run-down","poor condition","ruin"]},{pt:"Key details paraphrased (broken concrete, old/corroded tanks, wires) (1 mark)",kw:["broken","concrete","corroded","old tanks","wires","cables","rusty"]},{pt:"Genuinely different wording, not copied (1 mark)",kw:[]}],
+ model:"E.g. 'The rooftop lay abandoned — its concrete was broken, its water tanks corroded, and old cables trailed everywhere.'"},
+{type:"mcq",marks:1,q:"Which of these should you NOT do in a summary question?",opts:["Use your own words","Keep to the word limit","Add your own opinions and extra examples","Include only points relevant to the question"],ans:2,why:"Summaries must contain only the text's relevant ideas — no personal opinion or invented detail."},
+{type:"mcq",marks:1,q:"'Her sandals slapping on the stairs' — the word 'slapping' is an example of:",opts:["Simile","Onomatopoeia","Metaphor","Hyperbole"],ans:1,why:"'Slapping' imitates the sound made — onomatopoeia."}
+]},
+mock:[
+{type:"structured",marks:2,passage:P1,q:"1(a) Identify two things, apart from cracked cement, that made the roof unattractive before the garden. [2]",
+ points:[{pt:"Rusting water tanks (1 mark)",kw:["rust","water tank"]},{pt:"Television cables (1 mark)",kw:["cable","television","tv"]}],
+ model:"Rusting water tanks and television cables."},
+{type:"structured",marks:2,passage:P1,q:"1(b) Using your own words, explain how Meera reacted to the residents' laughter. [2]",
+ points:[{pt:"She was not put off / stayed determined (own words for 'not discouraged') (1 mark)",kw:["not put off","determined","undeterred","carried on","didn't give up","persever"]},{pt:"She started work by herself, bringing up soil and planting (1 mark)",kw:["alone","herself","soil","began","started planting","own"]}],
+ model:"She refused to be put off by their mockery and simply began the work on her own, hauling soil upstairs and planting in whatever containers she could find."},
+{type:"structured",marks:3,passage:P1,q:"1(c) Explain how the writer shows that the residents' attitude changed over time. Support your answer with two details. [3]",
+ points:[{pt:"Change identified: from mockery/doubt to participation/support (1 mark)",kw:["laughed","doubt","changed","support","join"]},{pt:"Detail 1: bank manager brought chilli seeds / children asked to water plants (1 mark)",kw:["bank manager","chilli","seeds","children","water"]},{pt:"Detail 2: association that had laughed voted to fund irrigation (1 mark)",kw:["voted","fund","irrigation","association"]}],
+ model:"At first the residents laughed, but the writer traces their change through concrete actions: the retired bank manager donates chilli seeds and schoolchildren beg to water the plants; finally the very association that had mocked the idea votes to pay for a drip-irrigation system."},
+{type:"structured",marks:3,passage:P1,q:"1(d) 'Slowly, curiosity defeated doubt.' Explain the effect of the writer presenting curiosity and doubt as if they were opponents in a battle. [3]",
+ points:[{pt:"Identifies the technique: personification/metaphor of conflict (1 mark)",kw:["personif","metaphor","battle","fight","conflict","opponents"]},{pt:"Suggests a gradual struggle between the residents' feelings (1 mark)",kw:["struggle","gradual","slowly","internal","competing"]},{pt:"'Defeated' implies a decisive victory — interest finally wins over scepticism (1 mark)",kw:["defeat","victory","win","won","overcome"]}],
+ model:"The writer personifies the residents' feelings as fighters in a battle. This suggests an ongoing internal struggle — their scepticism resisting their growing interest — while 'defeated' presents the outcome as a clear victory, emphasising that once curiosity won, the change was permanent."},
+{type:"structured",marks:5,passage:P1,q:"2. Assess the writer's attitude towards the residents' association. Support your answer with evidence. [5]",
+ points:[{pt:"Attitude: gently mocking/ironic but ultimately forgiving (1 mark)",kw:["mock","irony","ironic","critical","gentle","amused"]},{pt:"Evidence: 'the residents' association laughed' — shown as dismissive early on (1 mark)",kw:["laughed","dismiss"]},{pt:"'Nothing, they said, would ever grow' — their confident prediction is proven wrong (1 mark)",kw:["nothing","would ever grow","wrong","prediction"]},{pt:"Pointed reminder: 'the same one that had laughed' underlines their U-turn (1 mark)",kw:["same one","u-turn","reminds","repeat"]},{pt:"Yet their funding of irrigation shows they are allowed redemption — tone is amused, not bitter (1 mark)",kw:["fund","redemption","credit","not bitter","came around","support"]}],
+ model:"The writer treats the association with gentle irony. They are introduced dismissively — they 'laughed' and declared nothing would grow — and the writer enjoys proving them wrong. The pointed phrase 'the same one that had laughed' underlines their U-turn. Yet the tone is amused rather than harsh: by recording that they funded the irrigation system, the writer allows them redemption, suggesting tolerant humour rather than contempt."},
+{type:"structured",marks:5,passage:P1,q:"3. Write a summary of the benefits the rooftop garden brought. Use your own words, about 80 words. [Reading 3 + Writing 2]",
+ points:[{pt:"Food: fresh vegetables/herbs for residents (1 mark)",kw:["vegetables","food","produce","spinach","fresh"]},{pt:"Money/comfort: cooler top flats, lower electricity bills (1 mark)",kw:["cooler","bills","electricity","cheaper","comfort"]},{pt:"Community: neighbours bonded, shared evening space (1 mark)",kw:["community","neighbours","together","friend","gather","social"]},{pt:"Own words throughout (1 mark)",kw:[]},{pt:"Concise, organised single paragraph ≈80 words (1 mark)",kw:[]}],
+ model:"The garden gave residents home-grown food — greens, beans and herbs — from a space that had produced nothing. It made the building cheaper and more comfortable to live in, since the plants insulated the top floor and reduced electricity use. Above all, it created a community: previously distant neighbours now work side by side, children help with the watering, and each evening people meet on the roof to relax together. (Own words + ~80 words for full writing marks.)"}
+]};
+})();</script>
+</body>
+</html>
